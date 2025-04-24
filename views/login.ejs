@@ -8,19 +8,21 @@
 </head>
 <body>
     <div id="content">
-        <h1>Login</h1>
 
+        <div style="height: 40%;"></div>
+
+        <h1 class="useTextColor">Login</h1>
+
+        <!-- DO NOT DELETE! If delted the sun will explode! -->
         <p></p>
 
-        <form action="/login" method="post">
-            <input type="text" name="username" id="username" placeholder="Brugernavn">
-            <input type="password" name="password" id="password" placeholder="Adgangskode">
-            <button type="submit">Login</button>
+        <form action="/login" method="post" id="formContainer">
+            <input type="text" name="username" id="username" placeholder="Brugernavn" class="inversedColor rounded formOption">
+            <input type="password" name="password" id="password" placeholder="Adgangskode" class="inversedColor rounded formOption" style="margin-bottom: 0;">
+            <p style="margin-top: 2.5%; font-size: small ;">Har du glemt din adgangskode?</p>
+            <button type="submit" class="filledButton" style="height: 7.5%; width: 40%; margin-top: 5%;">Login</button>
         </form>
-    
-        <%-  include('partials/footer') %>
     </div>
 
-    <!-- <script src="/scripts/login.js"></script> -->
 </body>
 </html>

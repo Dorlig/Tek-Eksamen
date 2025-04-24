@@ -1,8 +1,6 @@
-* {
-    color: white;
-}
 
 html, body {
+    overflow: hidden;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -14,14 +12,28 @@ html, body {
     height: 100%;
     background-color: #112025;
     margin: 0;
-    padding: 2%;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+#formContainer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    /* padding: 2%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+* {
+    color: rgb(216, 250, 182);
+}
+
 .homeButtonContainer {
-    margin-bottom: 60%;
+    margin-bottom: 50%;
     width: 65%;
     height: 10%;
 }
@@ -35,27 +47,40 @@ html, body {
     width: 100%;
 }
 
-.homeScreenButton {
+.filledButton {
     width: 100%;
     height: 50%;
     margin: 2% 0;
     font-size: medium;
-    background-color: white;
+    background-color: chartreuse;
     color: #112025;
     border-radius: 1000px;
     border: none;
     font-weight: bolder;
 }
 
-#signUpButton {
+.rounded {
+    border-radius: 1000px;
+    padding: 2%;
+}
+
+.inversedColor {
     background-color: #112025;
-    color: white;
-    border: 2px solid white;
+    color: chartreuse;
+    border: 2px solid chartreuse;
     font-weight: normal;
+}
+
+.useTextColor {
+    color: chartreuse;
 }
 
 .center {
     margin: auto;
     width: 50%;
+}
+
+.formOption {
+    margin: 2%;
 }
 
