@@ -1,19 +1,61 @@
+* {
+    color: white;
+}
+
 html, body {
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
 }
 
 #content {
-    aspect-ratio: 9/16;
-    background-color: aqua;
+    width: 100%;
+    height: 100%;
+    background-color: #112025;
     margin: 0;
-    padding: 2em;
+    padding: 2%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.homeButtonContainer {
+    margin-bottom: 60%;
+    width: 65%;
+    height: 10%;
+}
+
+#homeDisclamer {
+    margin-top: 5%;
+    font-size: x-small;
+}
+
+#splashLogo {
+    width: 100%;
+}
+
+.homeScreenButton {
+    width: 100%;
+    height: 50%;
+    margin: 2% 0;
+    font-size: medium;
+    background-color: white;
+    color: #112025;
+    border-radius: 1000px;
+    border: none;
+    font-weight: bolder;
+}
+
+#signUpButton {
+    background-color: #112025;
+    color: white;
+    border: 2px solid white;
+    font-weight: normal;
 }
 
 .center {
     margin: auto;
     width: 50%;
 }
+
