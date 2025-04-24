@@ -35,8 +35,28 @@ app.get('/friends/:username', (req, res) => {
     }
 
 });
-app.get('/activities', (req, res) => {
-    res.render('activities');
+app.get('/activities/:username', (req, res) => {
+    // console.log(req.params.username)
+
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    if (obj.users[req.params.username]) {
+        const friends = obj.users[req.params.username].friends
+
+        const activities = []
+
+        for (const friend of friends) {
+            console.log(friend)
+            for (const activity of obj.users[friend].activities) {
+                activities.push(activity)
+            }
+        }
+
+        res.render('activities', {activities: activities});
+    }
+    else {
+        res.render('activities', {activities: []});
+    }
 });
 app.get('/chat', (req, res) => {
     res.render('chat');
