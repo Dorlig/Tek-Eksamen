@@ -1,0 +1,19 @@
+{
+  "name": "tek-eksamen",
+  "version": "1.0.0",
+  "description": "Tek eksamen",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dorlig/Tek-Eksamen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dorlig/Tek-Eksamen/issues"
+  },
+  "homepage": "https://github.com/Dorlig/Tek-Eksamen#readme"
+}
