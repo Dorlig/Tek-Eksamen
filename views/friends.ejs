@@ -6,8 +6,16 @@
     <title>Venner</title>
 </head>
 <body>
-    <h1>Venner</h1>
+    <div id="content">
+        <h1>Venner</h1>
 
-    <%-  include('partials/footer') %>
+        <% for (let i = 0; i < friends.length; i++)  { %>
+            <div class="friendContainer"><%= friends[i] %></div>
+
+        <% } %>
+
+    
+        <%-  include('partials/footer') %>
+    </div>
 </body>
 </html>

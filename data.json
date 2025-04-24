@@ -1,0 +1,82 @@
+{
+    "users": {
+        "user1": {
+            "password": "password1",
+            "friends": [
+                "user2"
+            ],
+            "profile": {
+                "age": 18,
+                "interests": ["fodbold", "computerspil", "skole"],
+                "description": "Hej, jeg er ____..."
+            },
+            "chats": {
+                "user2": [
+                    {
+                        "origin": "user1",
+                        "content": "Test message",
+                        "time": "24-04-2024 09:50"
+                    },
+                    {
+                        "origin": "user2",
+                        "content": "Test message response",
+                        "time": "24-04-2024 09:53"
+                    }
+                ]
+            },
+            "ativities": [
+                {
+                    "title": "Test activity",
+                    "created": "24-04-2024 09:55",
+                    "description": "Test description",
+                    "friends": [
+                        "user2"
+                    ],
+                    "participants": [
+
+                    ]
+                }
+            ]
+            
+        },
+        "user2": {
+            "password": "password2",
+            "friends": [
+                "user1"
+            ],
+            "profile": {
+                "age": 5,
+                "interests": ["fodbold", "computerspil", "skole"],
+                "description": "Hej, jeg er ____..."
+            },
+            "chats": {
+                "user1": [
+                    {
+                        "origin": "user1",
+                        "content": "Test message",
+                        "time": "24-04-2024 09:50"
+                    },
+                    {
+                        "origin": "user2",
+                        "content": "Test message response",
+                        "time": "24-04-2024 09:53"
+                    }
+                ]
+            },
+            "ativities": [
+                {
+                    "title": "Test activity 2",
+                    "created": "24-04-2024 09:57",
+                    "description": "Test description 2",
+                    "friends": [
+                        "user1"
+                    ],
+                    "participants": [
+
+                    ]
+                }
+            ]
+            
+        }
+    }
+}
