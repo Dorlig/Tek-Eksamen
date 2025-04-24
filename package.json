@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Dorlig/Tek-Eksamen/issues"
   },
-  "homepage": "https://github.com/Dorlig/Tek-Eksamen#readme"
+  "homepage": "https://github.com/Dorlig/Tek-Eksamen#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
