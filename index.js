@@ -134,10 +134,14 @@ app.get('/friends/:username', (req, res) => {
 
     if (obj.users[req.params.username]) {
         console.log(obj.users[req.params.username].friends)
-        res.render('friends', {friends: obj.users[req.params.username].friends});
+
+        // Find latest messages to each user
+        messages = {}
+
+        res.render('friends', {friends: obj.users[req.params.username].friends, messages});
     }
     else {
-        res.render('friends', {friends: []});
+        res.render('friends', {friends: [], messages: []});
     }
 
 });
@@ -183,13 +187,36 @@ app.get('/profile/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
 
-
-    res.render('profile', {profile: obj.users[username].profile});
+    // console.log(obj.users[req.params.username].profile)
+    res.render('profile', {profile: obj.users[req.params.username].profile, username: req.params.username});
 });
 app.post('/profile/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
-    res.render('profile');
+    console.log(req.body)
+    
+    if (obj.users[req.params.username]){
+        obj.users[req.params.username].profile.age = req.body.age
+        obj.users[req.params.username].profile.description = req.body.description
+        obj.users[req.params.username].profile.interests = JSON.parse(req.body.interests)
+
+        const data = JSON.stringify(obj);
+
+        fs.writeFile("data.json", data, (error) => {
+            if (error) {
+                console.error(error);
+
+                throw error;
+            }
+
+            console.log("Updated user profile");
+        });
+
+        res.redirect("/friends/"+req.params.username)
+    }
+    else {
+        res.render('profile');
+    }
 });
 
 app.get('/activity', (req, res) => {

@@ -5,9 +5,9 @@
       "email": "user1@email.com",
       "friends": ["user2"],
       "profile": {
-        "age": 18,
-        "interests": ["fodbold", "computerspil", "skole"],
-        "description": "Hej, jeg er ____..."
+        "age": "18",
+        "interests": ["Alkohol", "World of Warcraft"],
+        "description": "Hej, jeg er user 1..."
       },
       "chats": {
         "user2": [
