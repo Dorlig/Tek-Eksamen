@@ -6,8 +6,20 @@
     <title>Aktiviteter</title>
 </head>
 <body>
-    <h1>Home</h1>
+    <div id="content">
+        <h1>Aktiviteter</h1>
+    
+        <% for (let i = 0; i < activities.length; i++)  { %>
+            <div class="activityContainer">
+                <h3><%= activities[i].title %></h3>
+                <p><%= activities[i].created %></p>
+                <p><%= activities[i].description %></p>
+                <p><%= activities[i].participants.length %> har accepteret</p>
+            </div>
 
-    <%-  include('partials/footer') %>
+        <% } %>
+
+        <%-  include('partials/footer') %>
+    </div>
 </body>
 </html>
