@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
-app.use(express.static(__dirname + "/views"))
+app.use(express.static(__dirname + "/views"));
 
 app.get('/', (req, res) => {
     res.render('home');
