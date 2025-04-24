@@ -17,7 +17,15 @@ app.get('/', (req, res) => {
 });
 app.get('/login', (req, res) => {
     res.render('login');
+    console.log(req).body
 });
+
+app.get('/login-request', (req, res) => {
+    // console.log(req)
+
+    res.render('login');
+});
+
 app.get('/settings', (req, res) => {
     res.render('settings');
 });

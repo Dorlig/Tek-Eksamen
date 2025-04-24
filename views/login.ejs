@@ -6,8 +6,20 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <div id="content">
+        <h1>Login</h1>
 
-    <%-  include('partials/footer') %>
+        <p></p>
+
+        <form action="/login-request" method="get">
+            <input type="text" name="username" id="username" placeholder="Brugernavn">
+            <input type="password" name="password" id="password" placeholder="Adgangskode">
+            <button type="submit">Login</button>
+        </form>
+    
+        <%-  include('partials/footer') %>
+    </div>
+
+    <script src="/scripts/login.js"></script>
 </body>
 </html>
