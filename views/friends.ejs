@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Venner</title>
 </head>
 <body>
@@ -10,10 +11,14 @@
         <h1>Venner</h1>
 
         <% for (let i = 0; i < friends.length; i++)  { %>
-            <div class="friendContainer"><%= friends[i] %></div>
+            <a href="/chat/<%= username %>-<%= friends[i] %>" style="text-decoration: none;" class="friendContainer">
+                <div>
+                    <h3><%= friends[i] %></h3>
+                    <p> <%= messages[friends[i]].content %> fra <%= messages[friends[i]].origin %>, <%= messages[friends[i]].time %> </p>
+                </div>
+            </a>
 
         <% } %>
-
     
         <%-  include('partials/footer') %>
     </div>

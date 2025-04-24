@@ -14,6 +14,14 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + "/views"));
 
+function formatDate (date, dateStyle, timeStyle) {
+    return new Intl.DateTimeFormat("da-DK", {
+        dateStyle: dateStyle,
+        timeStyle: timeStyle,
+        timeZone: "Europe/Copenhagen",
+      }).format(date)
+}
+
 const tempUser = {
             "password": "",
             "email": "",
@@ -138,10 +146,28 @@ app.get('/friends/:username', (req, res) => {
         // Find latest messages to each user
         messages = {}
 
-        res.render('friends', {friends: obj.users[req.params.username].friends, messages});
+        for (const friend of obj.users[req.params.username].friends) {
+            const chats = obj.users[req.params.username].chats[friend]
+
+            let mostRecentChat = chats[0]
+
+            for (const chat of chats) {
+                if (chat.time > mostRecentChat.time) {
+                    mostRecentChat = chat
+                }
+            }
+
+            mostRecentChat.time = formatDate(new Date(mostRecentChat.time), "short", "medium")
+            messages[friend] = mostRecentChat
+
+            
+            // console.log(formatDate(new Date()))
+            // console.log(formatDate(new Date(Date.now())))
+        }
+        res.render('friends', {friends: obj.users[req.params.username].friends, messages: messages, username: req.params.username});
     }
     else {
-        res.render('friends', {friends: [], messages: []});
+        res.render('friends', {friends: [], messages: [], username: req.params.username});
     }
 
 });
@@ -168,9 +194,60 @@ app.get('/activities/:username', (req, res) => {
         res.render('activities', {activities: []});
     }
 });
-app.get('/chat', (req, res) => {
-    res.render('chat');
+app.get('/chat/:originTarget', (req, res) => {
+    const [username, targetName] = req.params.originTarget.split("-")
+
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    // console.log(username,targetName, obj.users[username].chats[targetName].sort((a, b) => a.time - b.time))
+
+    const messages = obj.users[username].chats[targetName]
+
+    for (let message of messages) {
+        message.time = formatDate(new Date(message.time), "medium", "medium")
+    }
+
+    res.render('chat', {username: username, targetName: targetName, messages: obj.users[username].chats[targetName].sort((a, b) => a.time - b.time)});
 });
+
+app.post('/chat/:originTarget', (req, res) => {
+    const [username, targetName] = req.params.originTarget.split("-")
+
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    console.log(req.body)
+
+    const newMessage = structuredClone(tempMessage)
+    newMessage.content = req.body.messageContent
+    newMessage.time = (new Date()).getTime()
+    newMessage.origin = username
+
+    obj.users[username].chats[targetName].push(newMessage)
+    obj.users[targetName].chats[username].push(newMessage)
+
+    const data = JSON.stringify(obj);
+
+    fs.writeFile("data.json", data, (error) => {
+        if (error) {
+            console.error(error);
+
+            throw error;
+        }
+
+        console.log("Updated user profile");
+    });
+
+    // console.log(username,targetName, obj.users[username].chats[targetName].sort((a, b) => a.time - b.time))
+
+    const messages = obj.users[username].chats[targetName]
+
+    for (let message of messages) {
+        message.time = formatDate(new Date(message.time), "medium", "medium")
+    }
+
+    res.render('chat', {username: username, targetName: targetName, messages: obj.users[username].chats[targetName].sort((a, b) => a.time - b.time)});
+})
+
 app.get('/call', (req, res) => {
     res.render('call');
 });
