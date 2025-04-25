@@ -36,6 +36,7 @@ let interests = [
     "Rap",
     "Hip Hop",
     "Folkemusik",
+    "Taylor Swift",
 
     "Skole",
     "Matematik",
@@ -122,18 +123,18 @@ $(document).ready(function() {
     // When something typed into searchbar filter interests
     $("#searchBar").on('input', function() {
         // Get what is seatched
-        searchedString = $("#searchBar").val()
+        searchedString = $("#searchBar").val().toLowerCase()
         
         // For each interest
         $(".resultsGrid").children(".interest").each(function() {
-            let intName = $(this).first().text().toString()
+            let intName = $(this).first().text().toString().toLowerCase()
 
             // Get the categories of interests, which are searched for
             let selectedCats = Object.keys(categories).filter(value => value.includes(searchedString))
             // Find all the interests in the searched categories
             let catinterests = []
             for (let cat of selectedCats) {
-                catinterests.push(...categories[cat])
+                catinterests.push(...categories[cat.toLowerCase()])
             }
 
             // If interests is not searched for and not in one of the searched categories then hide, else show

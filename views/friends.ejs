@@ -14,7 +14,7 @@
             <a href="/chat/<%= username %>-<%= friends[i] %>" style="text-decoration: none;" class="friendContainer">
                 <div>
                     <h3><%= friends[i] %></h3>
-                    <p> <%= messages[friends[i]].content %> fra <%= messages[friends[i]].origin %>, <%= messages[friends[i]].time %> </p>
+                    <p> <%= messages[friends[i]].origin %>: <%= messages[friends[i]].content %>, <%= messages[friends[i]].time %> </p>
                 </div>
             </a>
 

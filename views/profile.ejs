@@ -1,110 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Profil</title>
-    <style>
-        /* .interest.hide {
-            display: none;
-        }
-        .search {
-            position: relative;
-            margin-top: 0.7em;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-        
-        .searchBar {
-            position: absolute;
-            left: 0;
-            width: 85%;
-            border: 2px solid lightgray;
-            padding: 0.5em;
-            border-radius: 2em;
-            font-size: 1.1rem;
-        }
-        
-        .searchBtn {
-            position: absolute;
-            right: 18%;
-            width: 2.4em;
-            height: 2.4em;
-            border-radius: 5em;
-            text-align: center;
-            background-color: white;
-            border: none;
-        }
-        
-        .removeBtn {
-            position: absolute;
-            right: 2%;
-            width: 3em;
-            height: 3em;
-            border: 2px solid darkgray;
-            border-radius: 5em;
-            text-align: center;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            
-        }
-        
-        .results {
-            position: relative;
-            border: 2px solid grey;
-            margin-top: 2em;
-            width: 85vw;
-            height: 90%;
-        
-        
-        }
-        
-        .resultsGrid {
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            justify-content: stretch;
-        
-            height: fit-content;
-        }
-        
-        .interest {
-            background-color: lightgrey;
-            height: 2.5em;
-            padding: 0em 0.7em;
-            border-radius: 0.5em;
-        
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        
-            margin: 0.3em;
-        
-            flex: auto;
-            max-width: 20em;
-        }
-        .interest.select {
-            background-color: rgb(118, 213, 123);
-        }
-         */
-        
-    </style>
 </head>
+
 <body>
     <div id="content">
-        <h1>Profil</h1>
+        <h1 class="useTextColor">Profil</h1>
 
         <form action="/profile/<%= username %>" method="post" id="profileFormContainer">
-            <input type="number" min="16" max="99" name="age" id="age" placeholder="Alder" value="<%= profile.age < 0 ? "" : profile.age %>" style="color: black;">
-            <textarea name="description" id="description" placeholder="Opret en beskrivelse om dig selv" style="color: black;"><%= profile.description %></textarea>
+            <input type="number" min="16" max="99" name="age" id="age" placeholder="Alder"
+                value="<%= profile.age < 0 ? "" : profile.age %>" required style="color: black;">
+            <textarea name="description" id="description" class="inversedColor" placeholder="Opret en beskrivelse af dig selv"
+            required><%= profile.description %></textarea>
 
-            <input type="text" id="variableJSON" name="interests" hidden value="<%= JSON.stringify(profile.interests); %>">
+            <input type="text" id="variableJSON" name="interests" hidden
+                value="<%= JSON.stringify(profile.interests); %>">
             <div class="interests">
                 <div class="search">
                     <input type="text" class="searchBar" id="searchBar" list="categories" autocomplete="off">
@@ -115,15 +31,13 @@
                         <option value="Musik"></option>
                         <option value="Skole"></option>
                     </datalist>
-                    <button type="button" class="searchBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                        </svg>
-                    </button>
                     <button type="button" class="removeBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash" viewBox="0 0 16 16">
+                            <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                         </svg>
                     </button>
                 </div>
@@ -133,12 +47,13 @@
                 </div>
             </div>
 
-            <button type="submit">Gem</button>
+            <button type="submit" class="filledButton formSubmit">Gem</button>
         </form>
-    
-        <%-  include('partials/footer') %>
+
+        <%- include('partials/footer') %>
     </div>
 
     <script src="/scripts/profile.js"></script>
 </body>
+
 </html>
