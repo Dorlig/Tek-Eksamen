@@ -279,16 +279,38 @@ app.get('/searchActivity', (req, res) => {
 app.get('/createActivity/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
-
-
     res.render('createActivity', {username: req.params.username, friends: obj.users[req.params.username].friends});
 });
 
 app.post('/createActivity/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
+    const newActivity = structuredClone(tempActivity)
+
+    newActivity.created = new Date().getTime()
+    newActivity.title = req.body.title
+    newActivity.description = req.body.description
+    newActivity.creator = req.params.username
+    newActivity.friends = req.body.friendsList.split(" ")
+    newActivity.participants = []
+
+    obj.users[req.params.username].activities.push(newActivity)
+
+    const data = JSON.stringify(obj);
+
+    fs.writeFile("data.json", data, (error) => {
+        if (error) {
+            console.error(error);
+
+            throw error;
+        }
+
+        console.log("created new User");
+    });
+
     console.log(req.body)
 
+    res.redirect("/activities/"+req.params.username)
 });
 
 app.get('/profile/:username', (req, res) => {

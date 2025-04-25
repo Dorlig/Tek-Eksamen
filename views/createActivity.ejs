@@ -11,8 +11,8 @@
         <h1>Lav Aktivitet</h1>
 
         <form action="/createActivity/<%= username%>" method="post">
-            <input type="text" name="title" id="titleInput" placeholder="Skriv titlen her">
-            <textarea name="description" id="descriptionInput" placeholder="Skriv beskrivelsen her"></textarea>
+            <input type="text" name="title" id="titleInput" required placeholder="Skriv titlen her">
+            <textarea name="description" id="descriptionInput" required placeholder="Skriv beskrivelsen her"></textarea>
 
             <ul id="friendList">
 
