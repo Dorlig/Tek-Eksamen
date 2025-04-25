@@ -194,6 +194,8 @@ app.get('/activities/:username', (req, res) => {
         res.render('activities', {activities: []});
     }
 });
+
+
 app.get('/chat/:originTarget', (req, res) => {
     const [username, targetName] = req.params.originTarget.split("-")
 
@@ -209,7 +211,6 @@ app.get('/chat/:originTarget', (req, res) => {
 
     res.render('chat', {username: username, targetName: targetName, messages: obj.users[username].chats[targetName].sort((a, b) => a.time - b.time)});
 });
-
 app.post('/chat/:originTarget', (req, res) => {
     const [username, targetName] = req.params.originTarget.split("-")
 
@@ -217,25 +218,27 @@ app.post('/chat/:originTarget', (req, res) => {
 
     console.log(req.body)
 
-    const newMessage = structuredClone(tempMessage)
-    newMessage.content = req.body.messageContent
-    newMessage.time = (new Date()).getTime()
-    newMessage.origin = username
-
-    obj.users[username].chats[targetName].push(newMessage)
-    obj.users[targetName].chats[username].push(newMessage)
-
-    const data = JSON.stringify(obj);
-
-    fs.writeFile("data.json", data, (error) => {
-        if (error) {
-            console.error(error);
-
-            throw error;
-        }
-
-        console.log("Updated user profile");
-    });
+    if (req.body.messageContent !== "") {
+        const newMessage = structuredClone(tempMessage)
+        newMessage.content = req.body.messageContent
+        newMessage.time = (new Date()).getTime()
+        newMessage.origin = username
+    
+        obj.users[username].chats[targetName].push(newMessage)
+        obj.users[targetName].chats[username].push(newMessage)
+    
+        const data = JSON.stringify(obj);
+    
+        fs.writeFile("data.json", data, (error) => {
+            if (error) {
+                console.error(error);
+    
+                throw error;
+            }
+    
+            console.log("Updated user profile");
+        });
+    }
 
     // console.log(username,targetName, obj.users[username].chats[targetName].sort((a, b) => a.time - b.time))
 
@@ -246,6 +249,22 @@ app.post('/chat/:originTarget', (req, res) => {
     }
 
     res.render('chat', {username: username, targetName: targetName, messages: obj.users[username].chats[targetName].sort((a, b) => a.time - b.time)});
+})
+app.get('/chat/:originTarget/messages', (req, res) => {
+    const [username, targetName] = req.params.originTarget.split("-")
+
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    // console.log(username,targetName, obj.users[username].chats[targetName].sort((a, b) => a.time - b.time))
+
+    const messages = obj.users[username].chats[targetName]
+
+    for (let message of messages) {
+        message.time = formatDate(new Date(message.time), "medium", "medium")
+    }
+
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(obj.users[username].chats[targetName].sort((a, b) => a.time - b.time)));
 })
 
 app.get('/call', (req, res) => {

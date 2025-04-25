@@ -21,6 +21,8 @@
     </style>
 </head>
 <body>
+    <span id="extraInfo" hidden><%= username+"-"+targetName %></span>
+
     <div id="content">
         <div class="top" style="display: flex; justify-content: space-around; width: 100%;">
             <a href="/friends/<%= username %>">
@@ -33,7 +35,7 @@
             <h1><%= targetName %></h1>
         </div>
 
-        <div class="messages">
+        <div class="messages" id="messages">
             <% for(let i = 0; i < messages.length; i++) { %>
                 <div class="message <%= messages[i].origin === username ? "right" : "left" %>">
                     <div class="messageText"><%= messages[i].content %></div>
@@ -54,5 +56,7 @@
     
         <%-  include('partials/footer') %>
     </div>
+
+    <script src="/scripts/chat.js"></script>
 </body>
 </html>
