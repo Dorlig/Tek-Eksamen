@@ -1,5 +1,5 @@
-
-html, body {
+html,
+body {
     overflow: hidden;
     width: 100%;
     height: 100%;
@@ -33,7 +33,7 @@ html, body {
 }
 
 .homeButtonContainer {
-    margin-bottom: 50%;
+    margin-top: -30%;
     width: 65%;
     height: 10%;
 }
@@ -44,7 +44,197 @@ html, body {
 }
 
 #splashLogo {
+    width: 50%;
+}
+
+#profileFormContainer {
+    width: 75%;
+    height: 50%;
+    max-block-size: 50%;
+    margin: 0;
+    /* padding: 2%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.interest.hide {
+    display: none;
+}
+
+.search {
+    position: relative;
+    margin-top: 0.7em;
     width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.searchBar {
+    position: absolute;
+    left: 0;
+    width: 85%;
+    border: 2px solid lightgray;
+    padding: 0.5em;
+    border-radius: 2em;
+    font-size: 1.1rem;
+}
+
+.searchBtn {
+    position: absolute;
+    right: 18%;
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 5em;
+    text-align: center;
+    background-color: white;
+    border: none;
+}
+
+.removeBtn {
+    position: absolute;
+    right: 2%;
+    width: 3em;
+    height: 3em;
+    border: 2px solid darkgray;
+    border-radius: 5em;
+    text-align: center;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.results {
+    position: relative;
+    border: 2px solid grey;
+    margin-top: 2em;
+    width: 85vw;
+    height: 90%;
+
+
+}
+
+.resultsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: stretch;
+
+    height: fit-content;
+}
+
+.interests {
+    overflow: hidden;
+    width: 100%;
+    /* background-color: lightgrey; */
+    height: 100%;
+    padding: 0 2%;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 3%;
+
+    /* flex: auto; */
+}
+
+.interest.hide {
+    display: none;
+}
+
+.search {
+    position: relative;
+    margin-top: 0.7em;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.searchBar {
+    position: absolute;
+    left: 0;
+    width: 85%;
+    border: 2px solid lightgray;
+    padding: 0.5em;
+    border-radius: 2em;
+    font-size: 1.1rem;
+}
+
+.searchBtn {
+    position: absolute;
+    right: 18%;
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 5em;
+    text-align: center;
+    background-color: white;
+    border: none;
+}
+
+.removeBtn {
+    position: absolute;
+    right: 2%;
+    width: 3em;
+    height: 3em;
+    border: 2px solid darkgray;
+    border-radius: 5em;
+    text-align: center;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.results {
+    overflow: scroll;
+    position: relative;
+    border: 2px solid grey;
+    margin-top: 2em;
+    width: 85vw;
+    height: 90%;
+
+}
+
+.resultsGrid {
+    /* overflow: scroll; */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: stretch;
+
+    height: fit-content;
+}
+
+.interest {
+    font-size: small;
+    width: fit-content;
+    white-space: nowrap;
+    background-color: #112025;
+    color: rgb(216, 250, 182);
+    border: 2px solid rgb(216, 250, 182);
+    font-weight: normal;
+    border-radius: 1000px;
+    padding: 5%;
+}
+
+.interestsOption {
+    padding: 0;
+    margin: 0;
+}
+
+.interest.select > .interestsOption {
+    color: chartreuse;
+}
+
+.interest.select {
+    border-color: chartreuse;
 }
 
 .filledButton {
@@ -84,3 +274,8 @@ html, body {
     margin: 2%;
 }
 
+.formSubmit {
+    height: 7.5%;
+    width: 40%;
+    margin-top: 5%;
+}

@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Profil</title>
     <style>
-        .interest.hide {
+        /* .interest.hide {
             display: none;
         }
         .search {
@@ -52,7 +52,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* border: none; */
+            
         }
         
         .results {
@@ -76,7 +76,6 @@
         
         .interest {
             background-color: lightgrey;
-            /* width: max-content; */
             height: 2.5em;
             padding: 0em 0.7em;
             border-radius: 0.5em;
@@ -93,7 +92,7 @@
         .interest.select {
             background-color: rgb(118, 213, 123);
         }
-        
+         */
         
     </style>
 </head>
@@ -101,7 +100,7 @@
     <div id="content">
         <h1>Profil</h1>
 
-        <form action="/profile/<%= username %>" method="post">
+        <form action="/profile/<%= username %>" method="post" id="profileFormContainer">
             <input type="number" min="16" max="99" name="age" id="age" placeholder="Alder" value="<%= profile.age < 0 ? "" : profile.age %>" style="color: black;">
             <textarea name="description" id="description" placeholder="Opret en beskrivelse om dig selv" style="color: black;"><%= profile.description %></textarea>
 

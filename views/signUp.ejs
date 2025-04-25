@@ -8,18 +8,19 @@
 </head>
 <body>
     <div id="content">
-        <h1>Tilmed</h1>
+
+        <div style="height: 40%;"></div>
+
+        <h1 class="useTextColor">Tilmeld</h1>
 
         <p></p>
 
-        <form action="/signUp" method="post">
-            <input type="text" name="username" id="username" placeholder="Brugernavn">
-            <input type="email" name="email" id="email" placeholder="Email">
-            <input type="password" name="password" id="password" placeholder="Adgangskode">
-            <button type="submit">Login</button>
+        <form action="/signUp" method="post" id="formContainer">
+            <input type="text" name="username" id="username" placeholder="Brugernavn" class="inversedColor rounded formOption">
+            <input type="email" name="email" id="email" placeholder="Email" class="inversedColor rounded formOption">
+            <input type="password" name="password" id="password" placeholder="Adgangskode" class="inversedColor rounded formOption">
+            <button type="submit" class="filledButton formSubmit">Opret</button>
         </form>
-    
-        <%-  include('partials/footer') %>
     </div>
 
     <!-- <script src="/scripts/login.js"></script> -->

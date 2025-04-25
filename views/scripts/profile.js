@@ -77,6 +77,7 @@ $(document).ready(function() {
         let int = document.createElement("div")
         int.classList.add("interest")
         let name = document.createElement("h3")
+        name.classList.add("interestsOption")
         name.innerHTML = key
 
         int.append(name)
