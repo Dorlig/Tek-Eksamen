@@ -7,8 +7,36 @@
     <title>Lav Aktivitet</title>
 </head>
 <body>
-    <h1>Lav Aktivitet</h1>
+    <div id="content">
+        <h1>Lav Aktivitet</h1>
 
-    <%-  include('partials/footer') %>
+        <form action="/createActivity/<%= username%>" method="post">
+            <input type="text" name="title" id="titleInput" placeholder="Skriv titlen her">
+            <textarea name="description" id="descriptionInput" placeholder="Skriv beskrivelsen her"></textarea>
+
+            <ul id="friendList">
+
+            </ul>
+            <span hidden id="totalFriends"><%= friends.join(" ") %></span>
+
+            <input type="text" name="friends" id="friendsinput" hidden>
+            <div class="">
+                <input list="friendsList" name="friendsList" id="friendsListInput">
+                <datalist id="friendsList">
+                    <% for (const friend of friends) { %>
+                        <option value="<%= friend %>">
+                    <% } %>
+                </datalist>
+    
+                <button type="button" id="addFriend">Tilføj</button>
+            </div>
+
+            <button type="submit">Opret</button>
+        </form>
+    
+        <%-  include('partials/footer') %>
+    </div>
+
+    <script src="/scripts/createActivity.js"></script>
 </body>
 </html>

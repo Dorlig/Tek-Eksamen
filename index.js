@@ -277,8 +277,20 @@ app.get('/searchActivity', (req, res) => {
     res.render('searchActivity');
 });
 app.get('/createActivity/:username', (req, res) => {
-    res.render('createActivity');
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+
+
+    res.render('createActivity', {username: req.params.username, friends: obj.users[req.params.username].friends});
 });
+
+app.post('/createActivity/:username', (req, res) => {
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    console.log(req.body)
+
+});
+
 app.get('/profile/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
@@ -390,10 +402,10 @@ app.post('/activity/:originTarget/:id/remove', (req, res) => {
     res.render('activity', {username: username, activity: info, id: id});
 });
 
-app.listen(PORT, (error) =>{
+app.listen(PORT, "localhost", (error) =>{
     if(!error)
         console.log("Server is Successfully Running, and App is listening on port "+ PORT)
     else 
-        console.log("Error occurred, server can't start", error);
-    }
+    console.log("Error occurred, server can't start", error);
+}
 );
