@@ -101,7 +101,7 @@
     <div id="content">
         <h1>Profil</h1>
 
-        <form action="/profile/user1" method="post">
+        <form action="/profile/<%= username %>" method="post">
             <input type="number" min="16" max="99" name="age" id="age" placeholder="Alder" value="<%= profile.age < 0 ? "" : profile.age %>" style="color: black;">
             <textarea name="description" id="description" placeholder="Opret en beskrivelse om dig selv" style="color: black;"><%= profile.description %></textarea>
 
