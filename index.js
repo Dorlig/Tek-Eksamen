@@ -84,7 +84,7 @@ app.post('/signUp', (req, res) => {
 
     // console.log(obj.users)
 
-    const emailUsed = false
+    let emailUsed = false
     for (const user of Object.keys(obj.users)) {
         if (email == obj.users[user].email) {
             emailUsed = true
@@ -132,9 +132,7 @@ app.post('/signUp', (req, res) => {
     // }
 });
 
-app.get('/settings', (req, res) => {
-    res.render('settings');
-});
+
 app.get('/friends/:username', (req, res) => {
     console.log(req.params.username)
 
@@ -267,15 +265,20 @@ app.get('/chat/:originTarget/messages', (req, res) => {
     res.end(JSON.stringify(obj.users[username].chats[targetName].sort((a, b) => a.time - b.time)));
 })
 
+app.get('/settings/:username', (req, res) => {
+    res.render('settings', {username: req.params.username});
+});
 app.get('/call', (req, res) => {
     res.render('call');
 });
-app.get('/searchFriends', (req, res) => {
-    res.render('searchFriends');
+app.get('/searchFriends/:username', (req, res) => {
+    res.render('searchFriends', {username: req.params.username});
 });
 app.get('/searchActivity', (req, res) => {
     res.render('searchActivity');
 });
+
+
 app.get('/createActivity/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
