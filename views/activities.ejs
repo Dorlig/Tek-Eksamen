@@ -3,21 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Aktiviteter</title>
 </head>
 <body>
     <div id="content">
         <h1>Aktiviteter</h1>
-    
+
+        <% for (let i = 0; i < userActivities.length; i++)  { %>
+            <a href="/activity/<%= username+"-"+userActivities[i].creator %>/<%= i %>" class="userActivityContainer activityContainer" style="text-decoration: none">
+                <div>
+                    <h3><%= userActivities[i].title %></h3>
+                    <h3>af <%= userActivities[i].creator %></h3>
+                    <p><%= userActivities[i].created %></p>
+                    <p><%= userActivities[i].description %></p>
+                    <p><%= userActivities[i].participants.length %> har accepteret</p>
+                </div>
+            </a>
+            
+            <% } %>
+            
+        <div style="background-color: green; width: 80%; height: 2px;"></div>
+        
         <% for (let i = 0; i < activities.length; i++)  { %>
-            <div class="activityContainer">
-                <h3><%= activities[i].title %></h3>
-                <p><%= activities[i].created %></p>
-                <p><%= activities[i].description %></p>
-                <p><%= activities[i].participants.length %> har accepteret</p>
-            </div>
+            <a href="/activity/<%=  username+"-"+activities[i].creator %>/<%= i %>" class="activityContainer" style="text-decoration: none">
+                <div>
+                    <h3><%= activities[i].title %></h3>
+                    <h3>af <%= activities[i].creator %></h3>
+                    <p><%= activities[i].created %></p>
+                    <p><%= activities[i].description %></p>
+                    <p><%= activities[i].participants.length %> har accepteret</p>
+                </div>
+            </a>
 
         <% } %>
+
+        <a href="/createActivity/<%= username %>"><button>Opret Aktivitet</button></a>
 
         <%-  include('partials/footer') %>
     </div>

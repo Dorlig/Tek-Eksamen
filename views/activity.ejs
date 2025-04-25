@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Aktivitet</title>
 </head>
 <body>
-    <h1>Aktivitet</h1>
+    <div id="content">
+        <div class="activityContent">
+            <h1><%= activity.title %></h1>
+            <h2>Oprette af <%= activity.creator %></h2>
+            <h3>Oprettet den <%= activity.created %></h3>
+            <p><%= activity.description %></p>
+    
+            <p><%= activity.participants.length == 0 ? "Ingen har accepteret indtil videre" : activity.participants.join(" ") + " har alle accepteret" %></p>
+        </div>
 
-    <%-  include('partials/footer') %>
+        <% if (username != activity.creator) { %>
+        <div class="">
+            <% if (activity.participants.includes(username)) { %>
+                <form action="/activity/<%=  username+"-"+activity.creator %>/<%= id %>/remove" method="post">
+                    <button>Afmled</button>
+                </form>
+            <% } %>
+            <form action="/activity/<%=  username+"-"+activity.creator %>/<%= id %>/join" method="post">
+                <button>Tilmeld</button>
+            </form>
+        </div>
+        <% } %>
+    
+        <%-  include('partials/footer') %>
+    </div>
 </body>
 </html>

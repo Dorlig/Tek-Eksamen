@@ -188,7 +188,7 @@ app.get('/activities/:username', (req, res) => {
             }
         }
 
-        res.render('activities', {activities: activities});
+        res.render('activities', {activities: activities, userActivities: obj.users[req.params.username].activities, username: req.params.username});
     }
     else {
         res.render('activities', {activities: []});
@@ -276,7 +276,7 @@ app.get('/searchFriends', (req, res) => {
 app.get('/searchActivity', (req, res) => {
     res.render('searchActivity');
 });
-app.get('/createActivity', (req, res) => {
+app.get('/createActivity/:username', (req, res) => {
     res.render('createActivity');
 });
 app.get('/profile/:username', (req, res) => {
@@ -315,8 +315,79 @@ app.post('/profile/:username', (req, res) => {
     }
 });
 
-app.get('/activity', (req, res) => {
-    res.render('activity');
+app.get('/activity/:originTarget/:id', (req, res) => {
+    const [username, targetName] = req.params.originTarget.split("-")
+    const id = req.params.id
+
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    const info = obj.users[targetName].activities[id]
+
+    info.created = formatDate(new Date(), "long", "short")
+
+    console.log(info)
+
+    res.render('activity', {username: username, activity: info, id: id});
+});
+app.post('/activity/:originTarget/:id/join', (req, res) => {
+    const [username, targetName] = req.params.originTarget.split("-")
+    const id = req.params.id
+
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    if (!obj.users[targetName].activities[id].participants.includes(username)) {
+        obj.users[targetName].activities[id].participants.push(username)
+
+        const data = JSON.stringify(obj);
+
+        fs.writeFile("data.json", data, (error) => {
+            if (error) {
+                console.error(error);
+
+                throw error;
+            }
+
+            console.log("Updated user profile");
+        });
+    }
+
+    const info = obj.users[targetName].activities[id]
+
+    info.created = formatDate(new Date(), "long", "short")
+
+    console.log(info)
+
+    res.render('activity', {username: username, activity: info, id: id});
+});
+app.post('/activity/:originTarget/:id/remove', (req, res) => {
+    const [username, targetName] = req.params.originTarget.split("-")
+    const id = req.params.id
+
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    if (obj.users[targetName].activities[id].participants.includes(username)) {
+        obj.users[targetName].activities[id].participants.splice(obj.users[targetName].activities[id].participants.indexOf(username), 1)
+
+        const data = JSON.stringify(obj);
+
+        fs.writeFile("data.json", data, (error) => {
+            if (error) {
+                console.error(error);
+
+                throw error;
+            }
+
+            console.log("Updated user profile");
+        });
+    }
+
+    const info = obj.users[targetName].activities[id]
+
+    info.created = formatDate(new Date(), "long", "short")
+
+    console.log(info)
+
+    res.render('activity', {username: username, activity: info, id: id});
 });
 
 app.listen(PORT, (error) =>{

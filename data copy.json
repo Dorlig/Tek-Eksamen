@@ -1,84 +1,82 @@
 {
     "users": {
-        "user1": {
-            "password": "password1",
-            "email": "user1@email.com",
-            "friends": [
-                "user2"
-            ],
-            "profile": {
-                "age": 18,
-                "interests": ["fodbold", "computerspil", "skole"],
-                "description": "Hej, jeg er ____..."
-            },
-            "chats": {
-                "user2": [
-                    {
-                        "origin": "user1",
-                        "content": "Test message",
-                        "time": "24-04-2024 09:50"
-                    },
-                    {
-                        "origin": "user2",
-                        "content": "Test message response",
-                        "time": "24-04-2024 09:53"
-                    }
-                ]
-            },
-            "activities": [
-                {
-                    "title": "Test activity",
-                    "created": "24-04-2024 09:55",
-                    "description": "Test description",
-                    "friends": [
-                        "user2"
-                    ],
-                    "participants": [
-
-                    ]
-                }
-            ]
-            
+      "user1": {
+        "password": "password1",
+        "email": "user1@email.com",
+        "friends": ["user2"],
+        "profile": {
+          "age": "18",
+          "interests": [
+            "Alkohol",
+            "World of Warcraft",
+            "Leage of Legends",
+            "Celeste",
+            "BTD 6",
+            "Badminton",
+            "Bagning",
+            "Cykling"
+          ],
+          "description": "Hej, jeg er user 1..."
         },
-        "user2": {
-            "password": "password2",
-            "email": "user2@email.com",
-            "friends": [
-                "user1"
-            ],
-            "profile": {
-                "age": 5,
-                "interests": ["fodbold", "computerspil", "skole"],
-                "description": "Hej, jeg er ____..."
+        "chats": {
+          "user2": [
+            {
+              "origin": "user1",
+              "content": "Test message",
+              "time": 1745513480293
             },
-            "chats": {
-                "user1": [
-                    {
-                        "origin": "user1",
-                        "content": "Test message",
-                        "time": "24-04-2024 09:50"
-                    },
-                    {
-                        "origin": "user2",
-                        "content": "Test message response",
-                        "time": "24-04-2024 09:53"
-                    }
-                ]
+            {
+              "origin": "user2",
+              "content": "Test message response",
+              "time": 1745513500293
+            }
+          ]
+        },
+        "activities": [
+          {
+            "title": "Test activity",
+            "created": 1745513500293,
+            "description": "Test description",
+            "friends": ["user2"],
+            "participants": [],
+            "creator": "user1"
+          }
+        ]
+      },
+      "user2": {
+        "password": "password2",
+        "email": "user2@email.com",
+        "friends": ["user1"],
+        "profile": {
+          "age": "16",
+          "interests": ["fodbold", "computerspil", "skole", "Alkohol"],
+          "description": "Hej, jeg er mig ____..."
+        },
+        "chats": {
+          "user1": [
+            {
+              "origin": "user1",
+              "content": "Test message",
+              "time": 1745513480293
             },
-            "activities": [
-                {
-                    "title": "Test activity 2",
-                    "created": "24-04-2024 09:57",
-                    "description": "Test description 2",
-                    "friends": [
-                        "user1"
-                    ],
-                    "participants": [
-
-                    ]
-                }
-            ]
-            
-        }
+            {
+              "origin": "user2",
+              "content": "Test message response",
+              "time": 1745513500293
+            }
+          ]
+        },
+        "activities": [
+          {
+            "title": "Aktivitets navn",
+            "created": 1745513500293,
+            "description": "Beskrivelse af denne aktivitet",
+            "friends": ["user1"],
+            "participants": [],
+            "creator": "user2"
+          }
+        ]
+      }
     }
-}
+  }
+  
