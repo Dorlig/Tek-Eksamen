@@ -5,13 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <title>Søg Venner</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #2CC990;
+    color: white;
+    transition: 0.2s all;
+}
+
+h3:before {
+    content: "Try to swipe";
+}
+
+h3 {
+    line-height: 100vh;
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    text-rendering: 
+      optimizeLegibility;
+}
+    </style>
 </head>
 <body>
     <div id="content">
         <h1>Søg Venner</h1>
 
+        <div class="container">
+            <h3 class="desc"></h3>
+        </div>
+
         <%-  include('partials/footer') %>
     </div>
+
+    <script>
+        var initialTouchX, initialTouchY, finalTouchX, finalTouchY;
+var swipeThreshold = 100; 
+var dynamicStyle = 
+document.createElement("style");
+document.body.
+appendChild(dynamicStyle);
+
+
+function handleTouch(startX, endX,
+     onSwipeLeft, onSwipeRight) {
+    var horizontalDistance = 
+    finalTouchX - initialTouchX;
+    var verticalDistance = 
+    finalTouchY - initialTouchY;
+
+    if (Math.abs(horizontalDistance) >
+     Math.abs(verticalDistance) &&
+      Math.abs(horizontalDistance) >
+       swipeThreshold) {
+        if (finalTouchX - 
+            initialTouchX < 0) {
+            onSwipeLeft(); 
+        } else {
+            onSwipeRight(); 
+        }
+    }
+}
+
+
+var swipeLeft = () => {
+    dynamicStyle.innerHTML = 
+    "h3:before{content:'You swiped left!'}";
+    document.querySelector('.container').
+    style.background = '#D8335B';
+};
+
+var swipeRight = () => {
+    dynamicStyle.innerHTML = 
+    "h3:before{content:'You swiped right!'}";
+    document.querySelector('.container').
+    style.background = '#2C82C9';
+};
+
+
+window.onload = function () {
+    window.addEventListener
+    ('touchstart', function (event) {
+        initialTouchX = 
+        event.touches[0].clientX;
+        initialTouchY =
+         event.touches[0].clientY;
+    });
+
+    window.addEventListener
+    ('touchend', function (event) {
+        finalTouchX = event.
+        changedTouches[0].clientX;
+        finalTouchY = event.
+        changedTouches[0].clientY;
+
+        
+        handleTouch(initialTouchX,
+        finalTouchX, swipeLeft, swipeRight);
+    });
+};
+
+    </script>
 
 </body>
 </html>
