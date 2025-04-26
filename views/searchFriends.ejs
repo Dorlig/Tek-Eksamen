@@ -5,115 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <title>Søg Venner</title>
-    <style>
-* {
-    margin: 0;
-    padding: 0;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.container {
-    width: 100vw;
-    height: 100vh;
-    background-color: #2CC990;
-    color: white;
-    transition: 0.2s all;
-}
-
-h3:before {
-    content: "Try to swipe";
-}
-
-h3 {
-    line-height: 100vh;
-    text-align: center;
-    font-size: 15px;
-    letter-spacing: 0.3px;
-    text-rendering: 
-      optimizeLegibility;
-}
-    </style>
 </head>
 <body>
     <div id="content">
         <h1>Søg Venner</h1>
 
-        <div class="container">
-            <h3 class="desc"></h3>
+        <span hidden id="requestPath">/<%= username + "/" + targetName %></span>
+
+        <div>
+            <h2><%= targetName %></h2>
+            <h4><%= profile.age %> år gammel</h4>
+            <p><%= profile.description %></p>
+            <h4>Interesser</h4>
+            <ul>
+                <% for (let interest of profile.interests) { %>
+                    <li style="<%= userInterests.includes(interest) ? "font-weight: bold; color: chartreuse;" : ""  %>">
+                        <%= interest %>
+                    </li>
+                    
+                <% } %>
+            </ul>
         </div>
+
+        <div class="">
+            <div class="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+            </div>
+        </div>
+
 
         <%-  include('partials/footer') %>
     </div>
 
-    <script>
-        var initialTouchX, initialTouchY, finalTouchX, finalTouchY;
-var swipeThreshold = 100; 
-var dynamicStyle = 
-document.createElement("style");
-document.body.
-appendChild(dynamicStyle);
-
-
-function handleTouch(startX, endX,
-     onSwipeLeft, onSwipeRight) {
-    var horizontalDistance = 
-    finalTouchX - initialTouchX;
-    var verticalDistance = 
-    finalTouchY - initialTouchY;
-
-    if (Math.abs(horizontalDistance) >
-     Math.abs(verticalDistance) &&
-      Math.abs(horizontalDistance) >
-       swipeThreshold) {
-        if (finalTouchX - 
-            initialTouchX < 0) {
-            onSwipeLeft(); 
-        } else {
-            onSwipeRight(); 
-        }
-    }
-}
-
-
-var swipeLeft = () => {
-    dynamicStyle.innerHTML = 
-    "h3:before{content:'You swiped left!'}";
-    document.querySelector('.container').
-    style.background = '#D8335B';
-};
-
-var swipeRight = () => {
-    dynamicStyle.innerHTML = 
-    "h3:before{content:'You swiped right!'}";
-    document.querySelector('.container').
-    style.background = '#2C82C9';
-};
-
-
-window.onload = function () {
-    window.addEventListener
-    ('touchstart', function (event) {
-        initialTouchX = 
-        event.touches[0].clientX;
-        initialTouchY =
-         event.touches[0].clientY;
-    });
-
-    window.addEventListener
-    ('touchend', function (event) {
-        finalTouchX = event.
-        changedTouches[0].clientX;
-        finalTouchY = event.
-        changedTouches[0].clientY;
-
-        
-        handleTouch(initialTouchX,
-        finalTouchX, swipeLeft, swipeRight);
-    });
-};
-
-    </script>
+    <script src="/scripts/searchFriends.js"></script>
 
 </body>
 </html>

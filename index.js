@@ -26,6 +26,7 @@ const tempUser = {
             "password": "",
             "email": "",
             "friends": [],
+            "friendRequests": [],
             "profile": {
                 "age": -1,
                 "interests": [],
@@ -45,7 +46,8 @@ const tempActivity = {
     "created": "",
     "description": "",
     "friends": [],
-    "participants": []
+    "participants": [],
+    "creator": ""
 }
 
 app.get('/', (req, res) => {
@@ -155,8 +157,18 @@ app.get('/friends/:username', (req, res) => {
                 }
             }
 
-            mostRecentChat.time = formatDate(new Date(mostRecentChat.time), "short", "medium")
-            messages[friend] = mostRecentChat
+            // TODO: handle no messages in EJS
+            if (mostRecentChat != undefined) {
+                mostRecentChat.time = formatDate(new Date(mostRecentChat.time), "short", "medium")
+                messages[friend] = mostRecentChat
+            }
+            else {
+                mostRecentChat = {}
+                mostRecentChat.origin = ""
+                mostRecentChat.content = ""
+                mostRecentChat.time = 0
+                messages[friend] = mostRecentChat
+            }
 
             
             // console.log(formatDate(new Date()))
@@ -179,11 +191,17 @@ app.get('/activities/:username', (req, res) => {
 
         const activities = []
 
+        // TODO: check if user is actually invited
         for (const friend of friends) {
             console.log(friend)
             for (const activity of obj.users[friend].activities) {
+                activity.created = formatDate(new Date(activity.created), "medium", "short")
                 activities.push(activity)
             }
+        }
+
+        for (let act of obj.users[req.params.username].activities) {
+            act.created = formatDate(new Date(act.created), "medium", "short")
         }
 
         res.render('activities', {activities: activities, userActivities: obj.users[req.params.username].activities, username: req.params.username});
@@ -271,12 +289,89 @@ app.get('/settings/:username', (req, res) => {
 app.get('/call', (req, res) => {
     res.render('call');
 });
-app.get('/searchFriends/:username', (req, res) => {
-    res.render('searchFriends', {username: req.params.username});
-});
 app.get('/searchActivity', (req, res) => {
+    
     res.render('searchActivity');
 });
+
+app.get('/searchFriends/:username', (req, res) => {
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    let totalUsers = Object.keys(obj.users).filter(function (item) {return (obj.users[req.params.username].friends.indexOf(item) === -1) && (item!==req.params.username);});
+
+    let withFriendRequests = []
+
+    for (const user of totalUsers) {
+        if (obj.users[user].friendRequests.includes(req.params.username)) {
+            withFriendRequests.push(user)
+        }
+    }
+
+    let bestUser = ""
+    if (withFriendRequests.length != 0) {
+        const userMatching = []
+
+        for (const user of withFriendRequests) {
+            userMatching.push(user, obj.users[user].profile.interests.filter(value => obj.users[req.params.username].profile.interests.includes(value)).length);
+        }
+
+        userMatching.sort((a,b) => b[1] - a[1])
+
+        bestUser = userMatching[0][0]
+        console.log(userMatching)
+    }
+    else {
+        const userMatching = []
+
+        for (const user of totalUsers) {
+            userMatching.push(user, obj.users[user].profile.interests.filter(value => obj.users[req.params.username].profile.interests.includes(value)).length);
+        }
+
+        userMatching.sort((a,b) => b[1] - a[1])
+
+        bestUser = userMatching[0][0]
+        console.log(userMatching)
+    }
+    
+    res.render('searchFriends', {profile: obj.users[bestUser].profile, targetName: bestUser, username: req.params.username, userInterests: obj.users[req.params.username].profile.interests});
+});
+app.post('/searchFriends/:username/:target', (req, res) => {
+
+    var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+    // if target not on friendReqs, then add to your friend reqs
+    // else if on friendReqs, then add both to friends and create chat for both users
+    if (!obj.users[req.params.target].friendRequests.includes(req.params.username)) {
+        obj.users[req.params.username].friendRequests.push(req.params.target)
+    } else {
+        obj.users[req.params.username].friends.push(req.params.target)
+        obj.users[req.params.username].chats[req.params.target] = []
+        obj.users[req.params.target].friends.push(req.params.username)
+        obj.users[req.params.target].chats[req.params.username] = []
+        obj.users[req.params.target].friendRequests.splice(obj.users[req.params.target].friendRequests.indexOf(req.params.username), 1)
+    }
+
+    console.log(req.params.username, req.params.target)
+    console.log(obj.users)
+
+    const data = JSON.stringify(obj);
+    
+    fs.writeFile("data.json", data, (error) => {
+        if (error) {
+            console.error(error);
+
+            throw error;
+        }
+
+        console.log("Updated user profile");
+    });
+
+
+    
+    res.redirect("/searchFriends/"+req.params.username)
+    // res.render('searchFriends', {profile: obj.users["user1"].profile, targetName: "user1", username: req.params.username, userInterests: obj.users[req.params.username].profile.interests});
+});
+
 
 
 app.get('/createActivity/:username', (req, res) => {
