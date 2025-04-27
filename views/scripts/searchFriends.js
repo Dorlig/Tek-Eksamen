@@ -10,12 +10,25 @@ function handleTouch() {
     Math.abs(endX - startX) > swipeThreshold
   ) {
     if (endX - startX < 0) {
-    //   skip
+        console.log("rejecting user")
+        fetch(requestAddress, {headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify({"type": "reject" })})
+        window.location.reload(true)
     } else {
         console.log("sending request")
-        fetch(requestAddress, {method: "POST", headers: {"Content-type": "text/html",}})
-        .then((response) => response.json())
-        .then((json) => {});
+        fetch(requestAddress, {headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify({"type": "request" })})
+        window.location.reload(true)
+        // .then((response) => response.json())
+        // .then((json) => {});
     }
     // Find next profile
   }

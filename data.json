@@ -3,24 +3,66 @@
     "1": {
       "password": "1",
       "email": "1@1.1",
-      "friends": ["2"],
-      "friendRequests": [],
+      "friends": ["2", "abe", "abc"],
+      "friendRequests": ["Maae", "bcd"],
+      "friendRejects": [
+        "user1",
+        "user1",
+        "user1",
+        "user1",
+        "user1",
+        "user1",
+        "user1",
+        "user2"
+      ],
       "profile": { "age": "16", "interests": ["Alkohol"], "description": "1" },
-      "chats": { "2": [] },
-      "activities": [],
+      "chats": { "2": [], "abe": [], "abc": [] },
+      "activities": [
+        {
+          "title": "Her er en titel",
+          "created": 1745774997816,
+          "description": "Kun til 2 aber",
+          "friends": ["abe"],
+          "participants": ["abe"],
+          "creator": "1"
+        },
+        {
+          "title": "Til 2 abc",
+          "created": 1745775108384,
+          "description": "til 2 abc",
+          "friends": ["abc"],
+          "participants": [],
+          "creator": "1"
+        },
+        {
+          "title": "Endelig, denne burde virke",
+          "created": 1745775261137,
+          "description": "Denne er til abe og abc",
+          "friends": ["abe", "abc", ""],
+          "participants": [],
+          "creator": "1"
+        }
+      ],
       "username": "1"
     },
     "2": {
       "password": "2",
       "email": "2@2.2",
-      "friends": ["1"],
+      "friends": ["1", "Maae"],
       "friendRequests": [],
+      "friendRejects": [],
       "profile": {
         "age": "17",
         "interests": ["Alkohol", "BTD 6"],
         "description": "2"
       },
-      "chats": { "1": [] },
+      "chats": {
+        "1": [],
+        "Maae": [
+          { "origin": "2", "content": "Hej der", "time": 1745773944206 },
+          { "origin": "Maae", "content": "Hej", "time": 1745773957138 }
+        ]
+      },
       "activities": [],
       "username": "2"
     },
@@ -29,6 +71,7 @@
       "email": "user1@email.com",
       "friends": ["user2"],
       "friendRequests": [],
+      "friendRejects": [],
       "profile": {
         "age": "12",
         "interests": [
@@ -117,6 +160,7 @@
       "email": "user2@email.com",
       "friends": ["user1"],
       "friendRequests": [],
+      "friendRejects": [],
       "profile": {
         "age": "16",
         "interests": ["fodbold", "computerspil", "skole", "Alkohol"],
@@ -137,8 +181,9 @@
     "Maae": {
       "password": "no-password-nedded",
       "email": "maae@falskemail.dk",
-      "friends": [],
+      "friends": ["2"],
       "friendRequests": [],
+      "friendRejects": ["user1", "1"],
       "profile": {
         "age": "19",
         "interests": [
@@ -152,9 +197,103 @@
         ],
         "description": "Jeg ❤️ELSKER❤️ Valorant, jeg spiller i gennemsnittet 26 timer i døgnet mens jeg løber, læser, spiller League på min anden monitor alt sammen imens jeg hører Taylor Swift!!!"
       },
-      "chats": {},
+      "chats": {
+        "2": [
+          { "origin": "2", "content": "Hej der", "time": 1745773944206 },
+          { "origin": "Maae", "content": "Hej", "time": 1745773957138 }
+        ]
+      },
       "activities": [],
       "username": "Maae"
+    },
+    "abc": {
+      "password": "abc",
+      "email": "abc@abc.abc",
+      "friends": ["1"],
+      "friendRequests": [
+        "bcd",
+        "bcd",
+        "bcd",
+        "bcd",
+        "bcd",
+        "bcd",
+        "bcd",
+        "bcd",
+        "bcd",
+        "bcd",
+        "bcd",
+        "user1",
+        "abe",
+        "2"
+      ],
+      "friendRejects": ["user2", "Maae"],
+      "profile": {
+        "age": "16",
+        "interests": [
+          "Alkohol",
+          "BTD 6",
+          "Badminton",
+          "Bagning",
+          "Computerspil",
+          "Biologi",
+          "Celeste",
+          "Counter Strike",
+          "Country",
+          "Cykling"
+        ],
+        "description": "Hej jeg er abc"
+      },
+      "chats": { "1": [] },
+      "activities": [],
+      "username": "abc"
+    },
+    "bcd": {
+      "password": "bcd",
+      "email": "bcd@bcd.bcd",
+      "friends": [],
+      "friendRequests": [],
+      "friendRejects": [],
+      "profile": {
+        "age": "17",
+        "interests": [
+          "Biologi",
+          "BTD 6",
+          "Badminton",
+          "Bagning",
+          "Celeste",
+          "Computerspil",
+          "Counter Strike",
+          "Country",
+          "Cykling",
+          "Design"
+        ],
+        "description": "Hej jeg er bcd"
+      },
+      "chats": {},
+      "activities": [],
+      "username": "bcd"
+    },
+    "abe": {
+      "password": "abe",
+      "email": "abe@abe.abe",
+      "friends": ["1"],
+      "friendRequests": [],
+      "friendRejects": [],
+      "profile": {
+        "age": "18",
+        "interests": [
+          "Alkohol",
+          "BTD 6",
+          "Badminton",
+          "Bagning",
+          "Biologi",
+          "EDM"
+        ],
+        "description": "Hej jeg er abe"
+      },
+      "chats": { "1": [] },
+      "activities": [],
+      "username": "abe"
     }
   }
 }

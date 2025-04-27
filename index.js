@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var fs = require('fs');
 const path = require('path');
+const { rejects } = require('assert');
 
 const app = express();
 const PORT = 3000;
@@ -27,6 +28,7 @@ const tempUser = {
             "email": "",
             "friends": [],
             "friendRequests": [],
+            "friendRejects": [],
             "profile": {
                 "age": -1,
                 "interests": [],
@@ -187,16 +189,17 @@ app.get('/activities/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
     if (obj.users[req.params.username]) {
-        const friends = obj.users[req.params.username].friends
+        const userFriends = obj.users[req.params.username].friends
 
         const activities = []
 
-        // TODO: check if user is actually invited
-        for (const friend of friends) {
+        for (const friend of userFriends) {
             console.log(friend)
             for (const activity of obj.users[friend].activities) {
-                activity.created = formatDate(new Date(activity.created), "medium", "short")
-                activities.push(activity)
+                if (activity.friends.includes(req.params.username)) {
+                    activity.created = formatDate(new Date(activity.created), "medium", "short")
+                    activities.push(activity)
+                }
             }
         }
 
@@ -297,7 +300,10 @@ app.get('/searchActivity', (req, res) => {
 app.get('/searchFriends/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
-    let totalUsers = Object.keys(obj.users).filter(function (item) {return (obj.users[req.params.username].friends.indexOf(item) === -1) && (item!==req.params.username);});
+    let totalUsers = Object.keys(obj.users).filter(function (item) {return (obj.users[req.params.username].friends.indexOf(item) === -1) && 
+                                                                            (item!==req.params.username) && 
+                                                                            (obj.users[req.params.username].friendRequests.indexOf(item) === -1) &&
+                                                                            (obj.users[req.params.username].friendRejects.indexOf(item) === -1);});
 
     let withFriendRequests = []
 
@@ -312,7 +318,7 @@ app.get('/searchFriends/:username', (req, res) => {
         const userMatching = []
 
         for (const user of withFriendRequests) {
-            userMatching.push(user, obj.users[user].profile.interests.filter(value => obj.users[req.params.username].profile.interests.includes(value)).length);
+            userMatching.push([user, obj.users[user].profile.interests.filter(value => obj.users[req.params.username].profile.interests.includes(value)).length]);
         }
 
         userMatching.sort((a,b) => b[1] - a[1])
@@ -324,7 +330,9 @@ app.get('/searchFriends/:username', (req, res) => {
         const userMatching = []
 
         for (const user of totalUsers) {
-            userMatching.push(user, obj.users[user].profile.interests.filter(value => obj.users[req.params.username].profile.interests.includes(value)).length);
+            userMatching.push([user, obj.users[user].profile.interests.filter(value => obj.users[req.params.username].profile.interests.includes(value)).length]);
+
+            // console.log([user, obj.users[user].profile.interests.filter(value => obj.users[req.params.username].profile.interests.includes(value)).length])
         }
 
         userMatching.sort((a,b) => b[1] - a[1])
@@ -339,23 +347,33 @@ app.post('/searchFriends/:username/:target', (req, res) => {
 
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
-    // if target not on friendReqs, then add to your friend reqs
-    // else if on friendReqs, then add both to friends and create chat for both users
-    if (!obj.users[req.params.target].friendRequests.includes(req.params.username)) {
-        obj.users[req.params.username].friendRequests.push(req.params.target)
-    } else {
-        obj.users[req.params.username].friends.push(req.params.target)
-        obj.users[req.params.username].chats[req.params.target] = []
-        obj.users[req.params.target].friends.push(req.params.username)
-        obj.users[req.params.target].chats[req.params.username] = []
-        obj.users[req.params.target].friendRequests.splice(obj.users[req.params.target].friendRequests.indexOf(req.params.username), 1)
+    
+    console.log(req.body)
+
+    // If reject, then add to list of rejected users
+
+    if (req.body["type"] == "reject") {
+        obj.users[req.params.username].friendRejects.push(req.params.target)
+        console.log("reject")
+    } else if (req.body["type"] == "request") {
+        // if target not on friendReqs, then add to your friend reqs
+        // else if on friendReqs, then add both to friends and create chat for both users
+        if (!obj.users[req.params.target].friendRequests.includes(req.params.username)) {
+            obj.users[req.params.username].friendRequests.push(req.params.target)
+        } else {
+            obj.users[req.params.username].friends.push(req.params.target)
+            obj.users[req.params.username].chats[req.params.target] = []
+            obj.users[req.params.target].friends.push(req.params.username)
+            obj.users[req.params.target].chats[req.params.username] = []
+            obj.users[req.params.target].friendRequests.splice(obj.users[req.params.target].friendRequests.indexOf(req.params.username), 1)
+        }
+    
+        console.log(req.params.username, req.params.target)
+        // console.log(obj.users)
     }
 
-    console.log(req.params.username, req.params.target)
-    console.log(obj.users)
-
     const data = JSON.stringify(obj);
-    
+        
     fs.writeFile("data.json", data, (error) => {
         if (error) {
             console.error(error);
@@ -363,11 +381,11 @@ app.post('/searchFriends/:username/:target', (req, res) => {
             throw error;
         }
 
-        console.log("Updated user profile");
+        console.log("Updated friends status");
     });
 
 
-    
+    // res.redirect('back');
     res.redirect("/searchFriends/"+req.params.username)
     // res.render('searchFriends', {profile: obj.users["user1"].profile, targetName: "user1", username: req.params.username, userInterests: obj.users[req.params.username].profile.interests});
 });
@@ -389,7 +407,7 @@ app.post('/createActivity/:username', (req, res) => {
     newActivity.title = req.body.title
     newActivity.description = req.body.description
     newActivity.creator = req.params.username
-    newActivity.friends = req.body.friendsList.split(" ")
+    newActivity.friends = req.body.friends.split(" ")
     newActivity.participants = []
 
     obj.users[req.params.username].activities.push(newActivity)

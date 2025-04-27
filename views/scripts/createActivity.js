@@ -8,6 +8,7 @@ document.getElementById("addFriend").addEventListener("click", (e) => {
     console.log(val)
     if (!friendsinput.value.split(" ").includes(val)) {
         friendsinput.value += val + " "
+        document.getElementById("friendsListInput").value = ""
 
         // console.log("inp", friendsinput.value)
         
