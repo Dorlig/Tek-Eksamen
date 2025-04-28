@@ -29,7 +29,7 @@ body {
 }
 
 * {
-    color: rgb(216, 250, 182);
+    color: #d8fab6;
 }
 
 #homeLogoContainer {
@@ -113,10 +113,10 @@ body {
     left: 0;
     width: 80%;
     height: 100%;
-    border: 2px solid lightgray;
-    padding: 0;
+    max-height: 100%;
+    padding: 2%;
     border-radius: 1000px;
-    font-size: x-small;
+    font-size: small;
 }
 
 .removeBtn {
@@ -126,14 +126,18 @@ body {
     height: 100%;
     /* width: 100%; */
     aspect-ratio: 1;
-    border: 2px solid darkgray;
+    border: 2px solid chartreuse;
     border-radius: 1000px;
     text-align: center;
-    background-color: white;
+    background-color: #112025;
     display: flex;
     justify-content: center;
     align-items: center;
 
+}
+
+.removeImage {
+    color: chartreuse;
 }
 
 .results {
@@ -226,4 +230,186 @@ body {
     height: 7.5%;
     width: 40%;
     margin-top: 5%;
+}
+
+.footerTable {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0.5em;
+    max-block-size: 1%;
+}
+
+.footerRow {
+    /* background-color: red; */
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    max-block-size: 100%;
+}
+
+.footerElement {
+    height: 0%;
+    padding: 0;
+    margin: 0;
+    aspect-ratio: 1;
+    max-block-size: 100%;
+}
+
+.footerButton {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerImage {
+    height: 3em;
+    aspect-ratio: 1;
+}
+
+#friendsContainer {
+    width: 85%;
+    height: 75%;
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+    
+}
+
+.friendDiv {
+    width: 93%;
+    padding: 3%;
+    margin: 1% 0;
+    border-radius: 0.5em;
+    border: 2px solid chartreuse;
+    
+    /* background-color: yellowgreen; */
+}
+
+.friendName {
+    padding: 0;
+    margin: 0;
+}
+
+.friendLastMessage {
+    padding: 0;
+    margin: 0;
+}
+
+.left {
+    margin-right: auto;
+}
+.right {
+    margin-left: auto;
+}
+
+.chatOuter {
+    width: 90%;
+    height: 72%;
+    overflow: auto;
+    margin-top: 10%;
+}
+
+.messages {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.left > .chatMessageContent {
+    background-color: chartreuse;
+}
+
+.right > .chatMessageContent {
+    background-color: #d8fab6;
+}
+
+.message {
+    width: 75%;
+    margin-top: 2%;
+}
+
+.chatMessageContent {
+    color: #112025;
+    padding: 3% 2%;
+    border-radius: 0.35em;
+}
+
+.chatHeader {
+    display: inline-block;
+    justify-content: flex-start;
+    width: 100%;
+    height: 5%;
+}
+
+.backBtn {
+    height: 96%;
+    aspect-ratio: 1;
+    margin: 0;
+    margin-top: 2%;
+    margin-left: 2%;
+    padding: 0;
+    float: inline-start;
+}
+
+.chatBackImage {
+    height: 100%;
+    width: 100%;
+}
+
+.chatFriendBtn {
+    height: 96%;
+    aspect-ratio: 1;
+    margin: 0;
+    margin-top: 2%;
+    margin-right: 5%;
+    padding: 0;
+    float: inline-end;
+}
+
+.chatFriendImage {
+    height: 100%;
+    width: 100%;
+}
+
+
+.chatName {
+    width: 50%;
+    height: 96%;
+    margin: 0;
+    margin-top: 2%;
+    margin-left: 2%;
+    padding: 0;
+    font-size: x-large;
+    float:inline-start;
+}
+
+#chatForm {
+    margin-top: 2%;
+    width: 90%;
+    display: inline-block;
+}
+
+.chatMessageInput {
+    width: 82%;
+    height: 1.8em;
+    float: left;
+}
+
+.chatSend {
+    height: 2em;
+    width: 2em;
+    float: right;
+    
+}
+
+.sendImage {
+    width: 100%;
+    height: 95%;
 }

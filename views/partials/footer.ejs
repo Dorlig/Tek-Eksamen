@@ -1,20 +1,20 @@
-<div style="position: absolute; bottom: 0;">
-    <table>
-        <tr>
-            <td>
-                <a href="/profile/<%= username  %>"><button>Profil</button></a>
+<div style="position: absolute; bottom: 0; width: 100%;">
+    <table class="footerTable">
+        <tr class="footerRow">
+            <td class="footerElement">
+                <a href="/profile/<%= username  %>" class="footerButton"><img src="/images/Profile.png" alt="activities" class="footerImage"></a>
             </td>
-            <td>
-                <a href="/searchFriends/<%= username  %>"><button>Søg Venner</button></a>
+            <td class="footerElement">
+                <a href="/searchFriends/<%= username  %>" class="footerButton"><img src="/images/SearchFriends.png" alt="activities" class="footerImage"></a>
             </td>
-            <td>
-                <a href="/friends/<%= username  %>"><button>Venner</button></a>
+            <td class="footerElement">
+                <a href="/friends/<%= username  %>" class="footerButton"><img src="/images/Friends.png" alt="activities" class="footerImage"></a>
             </td>
-            <td>
-                <a href="/activities/<%= username  %>"><button>Aktiviteter</button></a>
+            <td class="footerElement">
+                <a href="/activities/<%= username  %>" class="footerButton"><img src="/images/Activities.png" alt="activities" class="footerImage"></a>
             </td>
-            <td>
-                <a href="/settings/<%= username  %>"><button>Indstillinger</button></a>
+            <td class="footerElement">
+                <a href="/settings/<%= username  %>" class="footerButton"><img src="/images/settings.png" alt="activities" class="footerImage"></a>
             </td>
         </tr>
     </table>

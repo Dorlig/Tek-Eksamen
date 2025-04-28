@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <title>Beskeder</title>
-    <style>
-        .left {
-            margin-right: auto;
-        }
-        .right {
-            margin-left: auto;
-        }
-        .messages {
-            width: 100%;
-        }
-        .message {
-            width: 50%;
-        }
-    </style>
 </head>
+
 <body>
-    <span id="extraInfo" hidden><%= username+"-"+targetName %></span>
+    <span id="extraInfo" hidden>
+        <%= username+"-"+targetName %>
+    </span>
 
     <div id="content">
-        <div class="top" style="display: flex; justify-content: space-around; width: 100%;">
+        <div class="top chatHeader">
             <a href="/friends/<%= username %>">
                 <div class="backBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                    </svg>
+                    <img src="/images/Back.png" alt="back" class="chatBackImage">
                 </div>
             </a>
-            <h1><%= targetName %></h1>
+            <h1 class="chatName useTextColor">
+                <%= targetName %>
+            </h1>
+            <div class="chatFriendBtn">
+                <img src="/images/FriendHeart.png" alt="heart" class="chatFriendImage">
+            </div>
         </div>
 
-        <div class="messages" id="messages">
-            <% for(let i = 0; i < messages.length; i++) { %>
-                <div class="message <%= messages[i].origin === username ? "right" : "left" %>">
-                    <div class="messageText"><%= messages[i].content %></div>
-                    <div class="messageText"><%= messages[i].time %></div>
-                </div>
-            <% } %>
+        <div class="chatOuter">
+
+            <div class="messages" id="messages">
+                <% for(let i=0; i < messages.length; i++) { %>
+                    <div class="message <%= messages[i].origin === username ? " right" : "left" %>">
+                        <div class="messageText chatMessageContent">
+                            <%= messages[i].content %>
+                        </div>
+                        <div class="messageText messageTimestamp">
+                            <%= messages[i].time %>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+
         </div>
 
-        <form action="/chat/<%= username %>-<%= targetName %>" method="post">
-            <input type="text" name="messageContent" id="messageContent" placeholder="Skriv her">
-            <button type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
-                </svg>
+        <form action="/chat/<%= username %>-<%= targetName %>" method="post" id="chatForm">
+            <input type="text" name="messageContent" id="messageContent"  placeholder="Skriv her" class="inversedColor rounded chatMessageInput">
+            <button type="submit" class="chatSend filledButton">
+                <img src="/images/Send.png" alt="send" class="sendImage">
             </button>
 
         </form>
-    
-        <%-  include('partials/footer') %>
+
+        <%- include('partials/footer') %>
     </div>
 
     <script src="/scripts/chat.js"></script>
 </body>
+
 </html>

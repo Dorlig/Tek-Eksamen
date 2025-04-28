@@ -12,7 +12,7 @@ let interests = [
     "Computerspil",
     "Counter Strike",
     "Fortnite",
-    "Leage of Legends",
+    "League of Legends",
     "Valorant",
     "World of Warcraft",
     "Minecraft",
@@ -65,7 +65,7 @@ let interests = [
 
 let categories = {
     'sport': ["Fodbold","Håndbold","Tennis","Badminton","Svømning",],
-    'computerspil': ["Counter Strike","Fortnite","Leage of Legends","Valorant","World of Warcraft","Minecraft","GTA 5","Stardew Valey","BTD 6","Celeste"],
+    'computerspil': ["Counter Strike","Fortnite","League of Legends","Valorant","World of Warcraft","Minecraft","GTA 5","Stardew Valey","BTD 6","Celeste"],
     'ost': ["Ost", "Parmesan", "Cheddar"],
     'mejeri': ["Mælk", "Fløde"],
     'alkohol': ["Øl", "Snaps", "Rødvin", "Rosévin", "Hvidvin", "Ethanol", "Vodka", "Whisky"]

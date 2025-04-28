@@ -8,19 +8,27 @@
 </head>
 <body>
     <div id="content">
-        <h1>Venner</h1>
+        <h1 class="useTextColor">Venner</h1>
 
-        <% for (let i = 0; i < friends.length; i++)  { %>
-            <a href="/chat/<%= username %>-<%= friends[i] %>" style="text-decoration: none;" class="friendContainer">
-                <div>
-                    <h3><%= friends[i] %></h3>
-                    <p> <%= messages[friends[i]].origin %>: <%= messages[friends[i]].content %>, <%= messages[friends[i]].time %> </p>
-                </div>
-            </a>
+        <div id="friendsContainer">
 
-        <% } %>
-    
-        <%-  include('partials/footer') %>
+            
+            <% for (let i = 0; i < friends.length; i++)  { %>
+                <a href="/chat/<%= username %>-<%= friends[i] %>" style="text-decoration: none;" class="friendContainer">
+                    <div class="friendDiv">
+                        <h3 class="useTextColor friendName"><%= friends[i] %></h3>
+                        <p class="friendLastMessage"> <%= messages[friends[i]].origin %>: <%= messages[friends[i]].content %> </p>
+                        <!-- <p><%= messages[friends[i]].time %> </p> -->
+                    </div>
+                </a>
+                
+            <% } %>
+                
+        </div>
+
     </div>
+    
+    <%-  include('partials/footer') %>
+
 </body>
 </html>
