@@ -148,8 +148,11 @@ app.get('/friends/:username', (req, res) => {
         // Find latest messages to each user
         messages = {}
 
-        for (const friend of obj.users[req.params.username].friends) {
+        let userFriends = obj.users[req.params.username].friends
+
+        for (const friend of userFriends) {
             const chats = obj.users[req.params.username].chats[friend]
+
 
             let mostRecentChat = chats[0]
 
@@ -161,7 +164,7 @@ app.get('/friends/:username', (req, res) => {
 
             // TODO: handle no messages in EJS
             if (mostRecentChat != undefined) {
-                mostRecentChat.time = formatDate(new Date(mostRecentChat.time), "short", "medium")
+                // mostRecentChat.time = formatDate(new Date(mostRecentChat.time), "short", "medium")
                 messages[friend] = mostRecentChat
             }
             else {
@@ -176,7 +179,11 @@ app.get('/friends/:username', (req, res) => {
             // console.log(formatDate(new Date()))
             // console.log(formatDate(new Date(Date.now())))
         }
-        res.render('friends', {friends: obj.users[req.params.username].friends, messages: messages, username: req.params.username});
+        
+        console.log(messages)
+        userFriends.sort((a, b) => messages[b].time - messages[a].time)
+
+        res.render('friends', {friends: userFriends, messages: messages, username: req.params.username});
     }
     else {
         res.render('friends', {friends: [], messages: [], username: req.params.username});
@@ -222,10 +229,15 @@ app.get('/chat/:originTarget', (req, res) => {
 
     // console.log(username,targetName, obj.users[username].chats[targetName].sort((a, b) => a.time - b.time))
 
-    const messages = obj.users[username].chats[targetName]
+    let userChats = obj.users[username].chats
 
-    for (let message of messages) {
-        message.time = formatDate(new Date(message.time), "medium", "medium")
+    if (userChats != undefined) {
+        for (let message of userChats[targetName]) {
+            message.time = formatDate(new Date(message.time), "short", "short").split(",")[1]
+        }
+    }
+    else {
+        userChats = []
     }
 
     res.render('chat', {username: username, targetName: targetName, messages: obj.users[username].chats[targetName].sort((a, b) => a.time - b.time)});
@@ -276,14 +288,21 @@ app.get('/chat/:originTarget/messages', (req, res) => {
 
     // console.log(username,targetName, obj.users[username].chats[targetName].sort((a, b) => a.time - b.time))
 
-    const messages = obj.users[username].chats[targetName]
+    console.log(username)
+    console.log(obj.users[username])
+    let userChats = obj.users[username].chats
 
-    for (let message of messages) {
-        message.time = formatDate(new Date(message.time), "medium", "medium")
+    if (userChats != undefined) {
+        for (let message of userChats[targetName]) {
+            message.time = formatDate(new Date(message.time), "short", "short").split(",")[1]
+        }
+    }
+    else {
+        userChats = []
     }
 
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(obj.users[username].chats[targetName].sort((a, b) => a.time - b.time)));
+    res.end(JSON.stringify(userChats[targetName].sort((a, b) => a.time - b.time)));
 })
 
 app.get('/settings/:username', (req, res) => {
@@ -300,10 +319,10 @@ app.get('/searchActivity', (req, res) => {
 app.get('/searchFriends/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
-    let totalUsers = Object.keys(obj.users).filter(function (item) {return (obj.users[req.params.username].friends.indexOf(item) === -1) && 
-                                                                            (item!==req.params.username) && 
-                                                                            (obj.users[req.params.username].friendRequests.indexOf(item) === -1) &&
-                                                                            (obj.users[req.params.username].friendRejects.indexOf(item) === -1);});
+    let totalUsers = Object.keys(obj.users).filter(function (user) {return (obj.users[req.params.username].friends.indexOf(user) === -1) && 
+                                                                            (user!==req.params.username) && 
+                                                                            (obj.users[req.params.username].friendRequests.indexOf(user) === -1) &&
+                                                                            (obj.users[req.params.username].friendRejects.indexOf(user) === -1);});
 
     let withFriendRequests = []
 
@@ -318,7 +337,9 @@ app.get('/searchFriends/:username', (req, res) => {
         const userMatching = []
 
         for (const user of withFriendRequests) {
-            userMatching.push([user, obj.users[user].profile.interests.filter(value => obj.users[req.params.username].profile.interests.includes(value)).length]);
+            userMatching.push([user, obj.users[user].profile.interests.filter(
+                value => obj.users[req.params.username].profile.interests.includes(value)).length]
+            );
         }
 
         userMatching.sort((a,b) => b[1] - a[1])
@@ -344,15 +365,10 @@ app.get('/searchFriends/:username', (req, res) => {
     res.render('searchFriends', {profile: obj.users[bestUser].profile, targetName: bestUser, username: req.params.username, userInterests: obj.users[req.params.username].profile.interests});
 });
 app.post('/searchFriends/:username/:target', (req, res) => {
-
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
-    
-    console.log(req.body)
-
-    // If reject, then add to list of rejected users
-
     if (req.body["type"] == "reject") {
+        // If reject, then add to list of rejected users
         obj.users[req.params.username].friendRejects.push(req.params.target)
         console.log("reject")
     } else if (req.body["type"] == "request") {
@@ -367,9 +383,6 @@ app.post('/searchFriends/:username/:target', (req, res) => {
             obj.users[req.params.target].chats[req.params.username] = []
             obj.users[req.params.target].friendRequests.splice(obj.users[req.params.target].friendRequests.indexOf(req.params.username), 1)
         }
-    
-        console.log(req.params.username, req.params.target)
-        // console.log(obj.users)
     }
 
     const data = JSON.stringify(obj);
