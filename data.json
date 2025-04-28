@@ -209,7 +209,7 @@
     "abc": {
       "password": "abc",
       "email": "abc@abc.abc",
-      "friends": ["1"],
+      "friends": ["1", "abe"],
       "friendRequests": [
         "bcd",
         "bcd",
@@ -223,7 +223,6 @@
         "bcd",
         "bcd",
         "user1",
-        "abe",
         "2"
       ],
       "friendRejects": ["user2", "Maae"],
@@ -243,7 +242,7 @@
         ],
         "description": "Hej jeg er abc"
       },
-      "chats": { "1": [] },
+      "chats": { "1": [], "abe": [] },
       "activities": [],
       "username": "abc"
     },
@@ -276,9 +275,9 @@
     "abe": {
       "password": "abe",
       "email": "abe@abe.abe",
-      "friends": ["1"],
-      "friendRequests": [],
-      "friendRejects": [],
+      "friends": ["1", "abc"],
+      "friendRequests": ["bcd"],
+      "friendRejects": ["user1"],
       "profile": {
         "age": "18",
         "interests": [
@@ -291,7 +290,7 @@
         ],
         "description": "Hej jeg er abe"
       },
-      "chats": { "1": [] },
+      "chats": { "1": [], "abc": [] },
       "activities": [],
       "username": "abe"
     }

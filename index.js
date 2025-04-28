@@ -397,7 +397,6 @@ app.get('/createActivity/:username', (req, res) => {
 
     res.render('createActivity', {username: req.params.username, friends: obj.users[req.params.username].friends});
 });
-
 app.post('/createActivity/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
