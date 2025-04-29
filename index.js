@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 var fs = require('fs');
 const path = require('path');
 const { rejects } = require('assert');
+const { profile } = require('console');
 
 const app = express();
 const PORT = 3000;
@@ -202,9 +203,11 @@ app.get('/activities/:username', (req, res) => {
 
         for (const friend of userFriends) {
             console.log(friend)
-            for (const activity of obj.users[friend].activities) {
+            for (let i = 0; i < obj.users[friend].activities.length; i++) {
+                const activity = obj.users[friend].activities[i]
                 if (activity.friends.includes(req.params.username)) {
                     activity.created = formatDate(new Date(activity.created), "medium", "short")
+                    activity.id = i
                     activities.push(activity)
                 }
             }
@@ -347,7 +350,7 @@ app.get('/searchFriends/:username', (req, res) => {
         bestUser = userMatching[0][0]
         console.log(userMatching)
     }
-    else {
+    else if (totalUsers.length != 0) {
         const userMatching = []
 
         for (const user of totalUsers) {
@@ -361,8 +364,13 @@ app.get('/searchFriends/:username', (req, res) => {
         bestUser = userMatching[0][0]
         console.log(userMatching)
     }
+
+    let bestProfile = {age: "", description: "", interests: []}
+    if (bestUser != "") {
+        bestProfile = obj.users[bestUser].profile
+    }
     
-    res.render('searchFriends', {profile: obj.users[bestUser].profile, targetName: bestUser, username: req.params.username, userInterests: obj.users[req.params.username].profile.interests});
+    res.render('searchFriends', {profile: bestProfile, targetName: bestUser != "" ? bestUser : "Ingen brugere tilbage", username: req.params.username, userInterests: obj.users[req.params.username].profile.interests});
 });
 app.post('/searchFriends/:username/:target', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
