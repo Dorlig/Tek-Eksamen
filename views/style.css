@@ -518,3 +518,8 @@ a {
 .arrowReject {
     color: palevioletred;
 }
+
+#age {
+    width: 50%;
+    margin: 2%;
+}

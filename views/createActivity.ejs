@@ -21,7 +21,7 @@
 
             <input type="text" name="friends" id="friendsinput" hidden>
             <div class="">
-                <input list="friendsList" class="inversedColor" name="friendsList" id="friendsListInput">
+                <input list="friendsList" class="inversedColor" name="friendsList" id="friendsListInput" placeholder="Inviter ven.">
                 <datalist id="friendsList">
                     <% for (const friend of friends) { %>
                         <option value="<%= friend %>">
