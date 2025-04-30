@@ -32,6 +32,10 @@ body {
     color: #d8fab6;
 }
 
+a {
+    text-decoration: none;
+}
+
 #homeLogoContainer {
     margin-top: 45%;
     width: 70%;
@@ -67,6 +71,14 @@ body {
 
 #description {
     height: 20%;
+    width: 85%;
+    margin-bottom: 5%;
+    border-radius: 1em;
+    padding: 2% 5%;
+}
+
+#descriptionInput {
+    height: 50%;
     width: 85%;
     margin-bottom: 5%;
     border-radius: 1em;
@@ -278,7 +290,7 @@ body {
     padding: 0;
     margin: 0;
     overflow: scroll;
-    
+
 }
 
 .friendDiv {
@@ -287,7 +299,7 @@ body {
     margin: 1% 0;
     border-radius: 0.5em;
     border: 2px solid chartreuse;
-    
+
     /* background-color: yellowgreen; */
 }
 
@@ -304,6 +316,7 @@ body {
 .left {
     margin-right: auto;
 }
+
 .right {
     margin-left: auto;
 }
@@ -322,11 +335,11 @@ body {
     padding: 0;
 }
 
-.left > .chatMessageContent {
+.left>.chatMessageContent {
     background-color: chartreuse;
 }
 
-.right > .chatMessageContent {
+.right>.chatMessageContent {
     background-color: #d8fab6;
 }
 
@@ -387,7 +400,7 @@ body {
     margin-left: 2%;
     padding: 0;
     font-size: x-large;
-    float:inline-start;
+    float: inline-start;
 }
 
 #chatForm {
@@ -406,10 +419,75 @@ body {
     height: 2em;
     width: 2em;
     float: right;
-    
 }
 
 .sendImage {
+    width: 120%;
+    margin: auto;
+    /* height: 95%; */
+}
+
+.activitiesContainer {
+    width: 85%;
+    height: 72%;
+    overflow: scroll;
+}
+
+.activityContainer {
     width: 100%;
-    height: 95%;
+}
+
+.activityDiv {
+    width: 93%;
+    padding: 3%;
+    margin: 1% 0;
+    border-radius: 0.5em;
+    border: 2px solid chartreuse;
+}
+
+.activityTitle {
+    font-size: xx-large;
+    margin: 0;
+    padding: 0;
+}
+
+.activityCreator {
+    font-size: medium;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+}
+
+.activityDescription {
+    margin: 4% 0;
+    padding: 0;
+}
+
+.activityParticipants,
+.activityCreated {
+    margin: 1% 0;
+    padding: 0;
+}
+
+.activityCreateButton {
+    height: 100%;
+}
+
+.activityFormContainer {
+    overflow: hidden;
+    width: 75%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.activityFormSubmit {
+    width: 30%;
+    height: 10%;
+}
+
+.friendOption {
+    color: chartreuse;
 }

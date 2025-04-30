@@ -12,9 +12,13 @@ setInterval(() => {
     .then((json) => {
         let newInner = ""
         for (const message of json) {
-            newInner += `<div class="message ${message.origin === username ? "right" : "left"}">
-                        	<div class="messageText">${ message.content}</div>
-                            <div class="messageText">${ message.time}</div>
+            newInner += `<div class="message ${ message.origin === username ? " right" : "left"}">
+                            <div class="messageText chatMessageContent">
+                                ${ message.content }
+                            </div>
+                            <div class="messageText messageTimestamp">
+                                ${ message.time }
+                            </div>
                         </div>\n`
         }
         

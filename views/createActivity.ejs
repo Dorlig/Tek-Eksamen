@@ -8,10 +8,10 @@
 </head>
 <body>
     <div id="content">
-        <h1>Lav Aktivitet</h1>
+        <h1 class="useTextColor">Lav Aktivitet</h1>
 
-        <form action="/createActivity/<%= username%>" method="post">
-            <input type="text" name="title" id="titleInput" class="inversedColor" required placeholder="Skriv titlen her">
+        <form action="/createActivity/<%= username%>" method="post" id="activityFormContainer">
+            <input type="text" name="title" id="titleInput" class="inversedColor rounded" required placeholder="Skriv titlen her">
             <textarea name="description" id="descriptionInput" class="inversedColor" required placeholder="Skriv beskrivelsen her"></textarea>
 
             <ul id="friendList">
@@ -31,11 +31,11 @@
                 <button type="button" class="inversedColor" id="addFriend">Tilføj</button>
             </div>
 
-            <button type="submit" class="filledButton">Opret</button>
+            <button type="submit" class="filledButton activityFormSubmit">Opret</button>
         </form>
     
-        <%-  include('partials/footer') %>
     </div>
+    <%-  include('partials/footer') %>
 
     <script src="/scripts/createActivity.js"></script>
 </body>
