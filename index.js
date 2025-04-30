@@ -308,17 +308,6 @@ app.get('/chat/:originTarget/messages', (req, res) => {
     res.end(JSON.stringify(userChats[targetName].sort((a, b) => a.time - b.time)));
 })
 
-app.get('/settings/:username', (req, res) => {
-    res.render('settings', {username: req.params.username});
-});
-app.get('/call', (req, res) => {
-    res.render('call');
-});
-app.get('/searchActivity', (req, res) => {
-    
-    res.render('searchActivity');
-});
-
 app.get('/searchFriends/:username', (req, res) => {
     var obj = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 

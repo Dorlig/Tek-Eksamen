@@ -1,1 +1,246 @@
-{"users":{"user1":{"password":"password1","email":"user1@email.com","username":"user1","friends":["user2"],"friendRequests":[],"friendRejects":[],"profile":{"age":"12","interests":["Alkohol","Leage of Legends","Celeste","BTD 6","Badminton","Bagning","Cykling"],"description":"Hej, jeg er user 1..."},"chats":{"user2":[{"origin":"user1","content":"Test message","time":1745513480293},{"origin":"user2","content":"Test message response","time":1745513500293},{"origin":"user1","content":"Hej","time":1745576289981},{"origin":"user2","content":"YAAAAAAAAAAa","time":1745576295000},{"origin":"user1","content":"Hvem er du?","time":1745576299684},{"origin":"user2","content":"Nu kan vi lægge hemlige planer","time":1745576311369},{"origin":"user1","content":"Ja.","time":1745576323348},{"origin":"user1","content":"🤩🤩🤩","time":1745576329975},{"origin":"user2","content":"Den 7/06 angriber vi","time":1745576331810},{"origin":"user1","content":"Hvem er du?","time":1745576340315},{"origin":"user1","content":"Steam!!!","time":1745576380777},{"origin":"user2","content":"DEIN MOR !!!!","time":1745576381417},{"origin":"user2","content":"DEIch bin ein BerlinerIN MOR !!!!","time":1745576394668},{"origin":"user1","content":"Ton mere!","time":1745576397786},{"origin":"user2","content":"Mi lukin e mama sina","time":1745576421489},{"origin":"user2","content":"Hej","time":1745865165073},{"origin":"user2","content":"Hvordan går det?","time":1745865348653},{"origin":"user2","content":"Hvordan går det?","time":1745865351773}]},"activities":[{"title":"Test activity","created":1745513500293,"description":"Test description","friends":["user2"],"participants":[],"creator":"user1"}]},"user2":{"password":"password2","email":"user2@email.com","friends":["user1"],"friendRequests":[],"friendRejects":[],"username":"user2","profile":{"age":"16","interests":["fodbold","computerspil","skole","Alkohol"],"description":"Hej, jeg er mig ____..."},"chats":{"user1":[{"origin":"user2","content":"Hej","time":1745865165073},{"origin":"user2","content":"Hvordan går det?","time":1745865348653},{"origin":"user2","content":"Hvordan går det?","time":1745865351773}]},"activities":[{"title":"Aktivitets navn","created":1745513500293,"description":"Beskrivelse af denne aktivitet","friends":["user1"],"participants":["user1"],"creator":"user2"}]},"Maae":{"password":"no-password-nedded","email":"maae@falskemail.dk","friends":["bruger2"],"friendRequests":[],"friendRejects":[],"profile":{"age":"19","interests":["Taylor Swift","Film","Fortnite","Løb","Læsning","Leage of Legends","Valorant"],"description":"Jeg ❤️ELSKER❤️ Valorant, jeg spiller i gennemsnittet 26 timer i døgnet mens jeg løber, læser, spiller League på min anden monitor alt sammen imens jeg hører Taylor Swift!!!"},"chats":{"bruger2":[{"origin":"bruger2","content":"Hej Maae","time":1745914276678}]},"activities":[],"username":"Maae"},"bruger1":{"password":"bruger1","email":"bruger1@email.dk","friends":["bruger2"],"friendRequests":[],"friendRejects":[],"profile":{"age":"18","interests":["Alkohol","Fest","EDM","Counter Strike","Fortnite","Løb","Taylor Swift"],"description":"Beskrivelse til bruger 1"},"chats":{"bruger2":[{"origin":"bruger1","content":"Hej der bruger 2","time":1745914211108}]},"activities":[],"username":"bruger1"},"bruger2":{"password":"bruger2","email":"bruger2@email.dk","friends":["bruger1","Maae"],"friendRequests":["user1"],"friendRejects":[],"profile":{"age":"19","interests":["Counter Strike","Fortnite","BTD 6","Film","Læsning","Matematik","Klassisk musik","Underholdning","World of Warcraft"],"description":"Beskrivelse til profilen af bruger 2"},"chats":{"bruger1":[{"origin":"bruger1","content":"Hej der bruger 2","time":1745914211108}],"Maae":[{"origin":"bruger2","content":"Hej Maae","time":1745914276678}]},"activities":[{"title":"Spil CS","created":1745914339034,"description":"Spille CS i aften kl. 20","friends":["bruger1","Maae",""],"participants":["bruger1","Maae"],"creator":"bruger2"}],"username":"bruger2"}}}
+{
+  "users": {
+    "user1": {
+      "password": "password1",
+      "email": "user1@email.com",
+      "username": "user1",
+      "friends": ["user2"],
+      "friendRequests": [],
+      "friendRejects": [],
+      "profile": {
+        "age": "12",
+        "interests": [
+          "Alkohol",
+          "Leage of Legends",
+          "Celeste",
+          "BTD 6",
+          "Badminton",
+          "Bagning",
+          "Cykling"
+        ],
+        "description": "Hej, jeg er user 1..."
+      },
+      "chats": {
+        "user2": [
+          {
+            "origin": "user1",
+            "content": "Test message",
+            "time": 1745513480293
+          },
+          {
+            "origin": "user2",
+            "content": "Test message response",
+            "time": 1745513500293
+          },
+          { "origin": "user1", "content": "Hej", "time": 1745576289981 },
+          {
+            "origin": "user2",
+            "content": "YAAAAAAAAAAa",
+            "time": 1745576295000
+          },
+          {
+            "origin": "user1",
+            "content": "Hvem er du?",
+            "time": 1745576299684
+          },
+          {
+            "origin": "user2",
+            "content": "Nu kan vi lægge hemlige planer",
+            "time": 1745576311369
+          },
+          { "origin": "user1", "content": "Ja.", "time": 1745576323348 },
+          { "origin": "user1", "content": "🤩🤩🤩", "time": 1745576329975 },
+          {
+            "origin": "user2",
+            "content": "Den 7/06 angriber vi",
+            "time": 1745576331810
+          },
+          {
+            "origin": "user1",
+            "content": "Hvem er du?",
+            "time": 1745576340315
+          },
+          { "origin": "user1", "content": "Steam!!!", "time": 1745576380777 },
+          {
+            "origin": "user2",
+            "content": "DEIN MOR !!!!",
+            "time": 1745576381417
+          },
+          {
+            "origin": "user2",
+            "content": "DEIch bin ein BerlinerIN MOR !!!!",
+            "time": 1745576394668
+          },
+          { "origin": "user1", "content": "Ton mere!", "time": 1745576397786 },
+          {
+            "origin": "user2",
+            "content": "Mi lukin e mama sina",
+            "time": 1745576421489
+          },
+          { "origin": "user2", "content": "Hej", "time": 1745865165073 },
+          {
+            "origin": "user2",
+            "content": "Hvordan går det?",
+            "time": 1745865348653
+          },
+          {
+            "origin": "user2",
+            "content": "Hvordan går det?",
+            "time": 1745865351773
+          }
+        ]
+      },
+      "activities": [
+        {
+          "title": "Test activity",
+          "created": 1745513500293,
+          "description": "Test description",
+          "friends": ["user2"],
+          "participants": [],
+          "creator": "user1"
+        }
+      ]
+    },
+    "user2": {
+      "password": "password2",
+      "email": "user2@email.com",
+      "friends": ["user1"],
+      "friendRequests": [],
+      "friendRejects": [],
+      "username": "user2",
+      "profile": {
+        "age": "16",
+        "interests": ["fodbold", "computerspil", "skole", "Alkohol"],
+        "description": "Hej, jeg er mig ____..."
+      },
+      "chats": {
+        "user1": [
+          { "origin": "user2", "content": "Hej", "time": 1745865165073 },
+          {
+            "origin": "user2",
+            "content": "Hvordan går det?",
+            "time": 1745865348653
+          },
+          {
+            "origin": "user2",
+            "content": "Hvordan går det?",
+            "time": 1745865351773
+          }
+        ]
+      },
+      "activities": [
+        {
+          "title": "Aktivitets navn",
+          "created": 1745513500293,
+          "description": "Beskrivelse af denne aktivitet",
+          "friends": ["user1"],
+          "participants": ["user1"],
+          "creator": "user2"
+        }
+      ]
+    },
+    "Maae": {
+      "password": "no-password-nedded",
+      "email": "maae@falskemail.dk",
+      "friends": ["bruger2"],
+      "friendRequests": [],
+      "friendRejects": [],
+      "profile": {
+        "age": "19",
+        "interests": [
+          "Taylor Swift",
+          "Film",
+          "Fortnite",
+          "Løb",
+          "Læsning",
+          "Leage of Legends",
+          "Valorant"
+        ],
+        "description": "Jeg ❤️ELSKER❤️ Valorant, jeg spiller i gennemsnittet 26 timer i døgnet mens jeg løber, læser, spiller League på min anden monitor alt sammen imens jeg hører Taylor Swift!!!"
+      },
+      "chats": {
+        "bruger2": [
+          { "origin": "bruger2", "content": "Hej Maae", "time": 1745914276678 }
+        ]
+      },
+      "activities": [],
+      "username": "Maae"
+    },
+    "bruger1": {
+      "password": "bruger1",
+      "email": "bruger1@email.dk",
+      "friends": ["bruger2"],
+      "friendRequests": [],
+      "friendRejects": [],
+      "profile": {
+        "age": "18",
+        "interests": [
+          "Alkohol",
+          "Fest",
+          "EDM",
+          "Counter Strike",
+          "Fortnite",
+          "Løb",
+          "Taylor Swift"
+        ],
+        "description": "Beskrivelse til bruger 1"
+      },
+      "chats": {
+        "bruger2": [
+          {
+            "origin": "bruger1",
+            "content": "Hej der bruger 2",
+            "time": 1745914211108
+          }
+        ]
+      },
+      "activities": [],
+      "username": "bruger1"
+    },
+    "bruger2": {
+      "password": "bruger2",
+      "email": "bruger2@email.dk",
+      "friends": ["bruger1", "Maae"],
+      "friendRequests": ["user1"],
+      "friendRejects": [],
+      "profile": {
+        "age": "19",
+        "interests": [
+          "Counter Strike",
+          "Fortnite",
+          "BTD 6",
+          "Film",
+          "Læsning",
+          "Matematik",
+          "Klassisk musik",
+          "Underholdning",
+          "World of Warcraft"
+        ],
+        "description": "Beskrivelse til profilen af bruger 2"
+      },
+      "chats": {
+        "bruger1": [
+          {
+            "origin": "bruger1",
+            "content": "Hej der bruger 2",
+            "time": 1745914211108
+          }
+        ],
+        "Maae": [
+          { "origin": "bruger2", "content": "Hej Maae", "time": 1745914276678 }
+        ]
+      },
+      "activities": [
+        {
+          "title": "Spil CS",
+          "created": 1745914339034,
+          "description": "Spille CS i aften kl. 20",
+          "friends": ["bruger1", "Maae", ""],
+          "participants": ["bruger1", "Maae"],
+          "creator": "bruger2"
+        }
+      ],
+      "username": "bruger2"
+    }
+  }
+}
