@@ -9,23 +9,23 @@
 <body>
     <div id="content">
         <div class="activityContent">
-            <h1><%= activity.title %></h1>
-            <h2>Oprette af <%= activity.creator %></h2>
-            <h3>Oprettet den <%= activity.created %></h3>
-            <p><%= activity.description %></p>
+            <h1 class="activityTitle useTextColor"><%= activity.title %></h1>
+            <h2 class="activityCreator">Oprettet af <%= activity.creator %></h2>
+            <p class="activityDescription"><%= activity.description %></p>
+            <h3 class="activityCreated">Oprettet den <%= activity.created %></h3>
     
-            <p><%= activity.participants.length == 0 ? "Ingen har accepteret indtil videre" : activity.participants.join(" ") + " har alle accepteret" %></p>
+            <p><%= activity.participants.length == 0 ? "Ingen har accepteret indtil videre" : activity.participants.join(" ") + " har accepteret" %></p>
         </div>
 
         <% if (username != activity.creator) { %>
         <div class="">
             <% if (activity.participants.includes(username)) { %>
                 <form action="/activity/<%=  username+"-"+activity.creator %>/<%= id %>/remove" method="post">
-                    <button>Afmled</button>
+                    <button class="filledButton activityAccept">Afmled</button>
                 </form>
             <% } %>
             <form action="/activity/<%=  username+"-"+activity.creator %>/<%= id %>/join" method="post">
-                <button>Tilmeld</button>
+                <button class="filledButton activityAccept">Tilmeld</button>
             </form>
         </div>
         <% } %>
