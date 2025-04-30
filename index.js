@@ -3,8 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var fs = require('fs');
 const path = require('path');
-const { rejects } = require('assert');
-const { profile } = require('console');
 
 const app = express();
 const PORT = 3000;
@@ -548,8 +546,8 @@ app.post('/activity/:originTarget/:id/remove', (req, res) => {
 
     res.render('activity', {username: username, activity: info, id: id});
 });
-
-app.listen(PORT, "192.168.107.197", "localhost", (error) =>{
+// 192.168.107.197
+app.listen(PORT, "localhost", (error) =>{
     if(!error)
         console.log("Server is Successfully Running, and App is listening on port "+ PORT)
     else 
