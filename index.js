@@ -549,7 +549,7 @@ app.post('/activity/:originTarget/:id/remove', (req, res) => {
     res.render('activity', {username: username, activity: info, id: id});
 });
 
-app.listen(PORT, "localhost", (error) =>{
+app.listen(PORT, "192.168.107.197", "localhost", (error) =>{
     if(!error)
         console.log("Server is Successfully Running, and App is listening on port "+ PORT)
     else 
