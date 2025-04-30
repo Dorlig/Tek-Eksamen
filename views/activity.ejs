@@ -8,8 +8,17 @@
 </head>
 <body>
     <div id="content">
+        <div class="top chatHeader">
+            <a href="/activities/<%= username %>">
+                <div class="backBtn">
+                    <img src="/images/Back.png" alt="back" class="chatBackImage">
+                </div>
+            </a>
+            <h1 class="activityHeaderTitle useTextColor">
+                <%= activity.title %>
+            </h1>
+        </div>
         <div class="activityContent">
-            <h1 class="activityTitle useTextColor"><%= activity.title %></h1>
             <h2 class="activityCreator">Oprettet af <%= activity.creator %></h2>
             <p class="activityDescription"><%= activity.description %></p>
             <h3 class="activityCreated">Oprettet den <%= activity.created %></h3>
