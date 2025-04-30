@@ -16,7 +16,7 @@
         <form action="/profile/<%= username %>" method="post" id="profileFormContainer">
             <input type="number" min="16" max="99" name="age" id="age" placeholder="Alder"
                 value="<%= profile.age < 0 ? "" : profile.age %>" required class="inversedColor rounded">
-            <textarea name="description" id="description" class="inversedColor" placeholder="Opret en beskrivelse af dig selv"
+            <textarea name="description" class="inversedColor" placeholder="Opret en beskrivelse af dig selv"
             required><%= profile.description %></textarea>
 
             <input type="text" id="variableJSON" name="interests" hidden

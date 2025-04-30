@@ -30,7 +30,7 @@
         <div class="">
             <% if (activity.participants.includes(username)) { %>
                 <form action="/activity/<%=  username+"-"+activity.creator %>/<%= id %>/remove" method="post">
-                    <button class="filledButton activityAccept">Afmled</button>
+                    <button class="filledButton activityAccept">Afmeld</button>
                 </form>
             <% } %>
             <form action="/activity/<%=  username+"-"+activity.creator %>/<%= id %>/join" method="post">

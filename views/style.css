@@ -510,3 +510,11 @@ a {
 .friendTrap {
     margin: 0 10%;
 }
+
+.arrowAccept {
+    color: chartreuse;
+}
+
+.arrowReject {
+    color: palevioletred;
+}
