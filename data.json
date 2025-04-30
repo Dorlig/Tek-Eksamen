@@ -1,1 +1,42 @@
-{"users":{"Lærer":{"password":"1234","email":"laerer@gmail.com","friends":[],"friendRequests":[],"friendRejects":[],"profile":{"age":"18","interests":["Klassisk musik","Læsning","Skole"],"description":"Testprofil til læreren."},"chats":{},"activities":[],"username":"Lærer"},"Censor":{"password":"1234","email":"censor@gmail.com","friends":[],"friendRequests":[],"friendRejects":[],"profile":{"age":"18","interests":["Klassisk musik","Skole","Film"],"description":"Testprofil til censor."},"chats":{},"activities":[],"username":"Censor"},"Test":{"password":"test","email":"test@gmail.com","friends":[],"friendRequests":[],"friendRejects":[],"profile":{"age":-1,"interests":[],"description":""},"chats":{},"activities":[],"username":"Test"}}}
+{
+    "users": {
+        "Lærer": {
+            "password": "1234",
+            "email": "laerer@gmail.com",
+            "friends": [],
+            "friendRequests": [],
+            "friendRejects": [],
+            "profile": {
+                "age": "18",
+                "interests": [
+                    "Klassisk musik",
+                    "Læsning",
+                    "Skole"
+                ],
+                "description": "Testprofil til læreren."
+            },
+            "chats": {},
+            "activities": [],
+            "username": "Lærer"
+        },
+        "Censor": {
+            "password": "1234",
+            "email": "censor@gmail.com",
+            "friends": [],
+            "friendRequests": [],
+            "friendRejects": [],
+            "profile": {
+                "age": "18",
+                "interests": [
+                    "Klassisk musik",
+                    "Skole",
+                    "Film"
+                ],
+                "description": "Testprofil til censor."
+            },
+            "chats": {},
+            "activities": [],
+            "username": "Censor"
+        }
+    }
+}
